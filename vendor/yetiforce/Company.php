@@ -51,8 +51,8 @@ class Company extends Base
 		}
 		$logoModel = new \Vtiger_Image_Model();
 		$logoModel->setData([
-			'imageUrl' => \AppConfig::main('site_URL') . static::$logoPath . $logoName,
-			'imagePath' => ROOT_DIRECTORY . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, static::$logoPath) . $logoName,
+			'imageUrl' => \AppConfig::main('site_URL') . PUBLIC_DIRECTORY . static::$logoPath . $logoName,
+			'imagePath' => ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, static::$logoPath) . $logoName,
 			'alt' => $logoName,
 			'imageName' => $logoName,
 			'title' => Language::translate('LBL_COMPANY_LOGO_TITLE'),

@@ -8,9 +8,9 @@
  * All Rights Reserved.
  * ********************************************************************************** */
 
-require_once 'modules/WSAPP/Utils.php';
-require_once 'include/database/PearDatabase.php';
-require_once 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'modules/WSAPP/Utils.php';
+require_once ROOT_DIRECTORY . 'include/database/PearDatabase.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
 
 class SyncServer
 {
@@ -37,7 +37,7 @@ class SyncServer
 	}
 
 	/**
-	 * Retrieve serverid-clientid record map information for the given 
+	 * Retrieve serverid-clientid record map information for the given
 	 * application and serverid
 	 */
 	public function idmap_get_clientmap($appid, $serverids)

@@ -8,13 +8,13 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ******************************************************************************* */
-require_once 'config/config.php';
-require_once 'config/debug.php';
-require_once 'config/performance.php';
-require_once 'include/Webservices/Delete.php';
-require_once 'include/Webservices/DescribeObject.php';
-require_once 'include/Loader.php';
-require_once('include/ConfigUtils.php');
+require_once ROOT_DIRECTORY . 'config/config.php';
+require_once ROOT_DIRECTORY . 'config/debug.php';
+require_once ROOT_DIRECTORY . 'config/performance.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Delete.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/DescribeObject.php';
+require_once ROOT_DIRECTORY . 'include/Loader.php';
+require_once ROOT_DIRECTORY . 'include/ConfigUtils.php';
 vimport('include.runtime.Globals');
 vimport('include.runtime.BaseModel');
 

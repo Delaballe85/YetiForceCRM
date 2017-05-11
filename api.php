@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ****************************************************************************** */
-require_once 'config/api.php';
+require_once ROOT_DIRECTORY . 'config/api.php';
 $service = strip_tags($_REQUEST['service']);
 
 if (isset($service)) {
@@ -18,11 +18,11 @@ if (isset($service)) {
 	}
 
 	if ($service == "firefox") {
-		include('api/firefoxtoolbar.php');
+		include(ROOT_DIRECTORY . 'api/firefoxtoolbar.php');
 	} elseif ($service == "wordplugin") {
-		include('api/wordplugin.php');
+		include(ROOT_DIRECTORY . 'api/wordplugin.php');
 	} elseif ($service == "thunderbird") {
-		include('api/thunderbirdplugin.php');
+		include(ROOT_DIRECTORY . 'api/thunderbirdplugin.php');
 	} else {
 		echo "No Service Configured for $service";
 	}

@@ -5,7 +5,7 @@
  * @license licenses/License.html
  * @author Radosław Skrzypczak <r.skrzypczak@yetiforce.com>
  */
-include_once 'modules/Vtiger/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
 
 class IStorages extends Vtiger_CRMEntity
 {
@@ -85,15 +85,15 @@ class IStorages extends Vtiger_CRMEntity
 	public function vtlib_handler($moduleName, $eventType)
 	{
 		if ($eventType == 'module.postinstall') {
-			
+
 		} else if ($eventType == 'module.disabled') {
-			
+
 		} else if ($eventType == 'module.preuninstall') {
-			
+
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
-			
+
 		}
 	}
 
@@ -144,9 +144,9 @@ class IStorages extends Vtiger_CRMEntity
 	/**
 	 * Function to create array of all the storages in the hierarchy
 	 * @param integer $id - Id of the record highest in hierarchy
-	 * @param array $iStorageInfoBase 
+	 * @param array $iStorageInfoBase
 	 * @param integer $iStorageId - istorageid
-	 * @param array $listviewEntries 
+	 * @param array $listviewEntries
 	 * returns All the parent storages of the given Storage in array format
 	 */
 	public function getHierarchyData($id, $iStorageInfoBase, $iStorageId, $listviewEntries, $getRawData = false, $getLinks = true)
@@ -154,7 +154,7 @@ class IStorages extends Vtiger_CRMEntity
 
 		\App\Log::trace('Entering getHierarchyData(' . $id . ',' . $iStorageId . ') method ...');
 		$currentUser = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $currentUser->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $currentUser->id . '.php');
 
 		$hasRecordViewAccess = (vtlib\Functions::userIsAdministrator($currentUser)) || (isPermitted('IStorages', 'DetailView', $iStorageId) == 'yes');
 		$listColumns = AppConfig::module('IStorages', 'COLUMNS_IN_HIERARCHY');

@@ -24,7 +24,7 @@ class Users_Image_File
 			throw new \Exception\NoPermitted('Not Acceptable', 406);
 		}
 		$recordModel = Vtiger_Record_Model::getInstanceById($record, $request->getModule());
-		$path = ROOT_DIRECTORY . DIRECTORY_SEPARATOR . $recordModel->getImagePath();
+		$path = ROOT_DIRECTORY . $recordModel->getImagePath();
 		$file = App\Fields\File::loadFromPath($path);
 		header('Content-Type: ' . $file->getMimeType());
 		header("Content-Transfer-Encoding: binary");

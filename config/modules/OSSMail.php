@@ -76,7 +76,7 @@ $config['list_cols'] = array('flag', 'status', 'subject', 'fromto', 'date', 'siz
 $config['enable_authres_status_column'] = true;
 $config['show_statuses'] = 127;
 //CRM Additional configuration parameters
-$config['root_directory'] = ROOT_DIRECTORY . DIRECTORY_SEPARATOR;
+$config['root_directory'] = ROOT_DIRECTORY;
 $config['site_URL'] = $site_URL;
 $config['imap_open_add_connection_type'] = true;
 $config['enable_variables_in_signature'] = false;

@@ -45,8 +45,8 @@ class OSSMail_Record_Model extends Vtiger_Record_Model
 
 	public static function load_roundcube_config()
 	{
-		include 'modules/OSSMail/roundcube/config/defaults.inc.php';
-		include 'config/modules/OSSMail.php';
+		include ROOT_DIRECTORY . 'modules/OSSMail/roundcube/config/defaults.inc.php';
+		include ROOT_DIRECTORY . 'config/modules/OSSMail.php';
 		return $config;
 	}
 
@@ -572,7 +572,7 @@ class OSSMail_Record_Model extends Vtiger_Record_Model
 	public static function getViewableData()
 	{
 		$return = [];
-		include 'config/modules/OSSMail.php';
+		include ROOT_DIRECTORY . 'config/modules/OSSMail.php';
 		foreach ($config as $key => $value) {
 			if ($key == 'skin_logo') {
 				$return[$key] = $value['*'];
@@ -585,7 +585,7 @@ class OSSMail_Record_Model extends Vtiger_Record_Model
 
 	public static function setConfigData($param, $dbupdate = true)
 	{
-		$fileName = 'config/modules/OSSMail.php';
+		$fileName = ROOT_DIRECTORY . 'config/modules/OSSMail.php';
 		$fileContent = file_get_contents($fileName);
 		$Fields = self::getEditableFields();
 		foreach ($param as $fieldName => $fieldValue) {

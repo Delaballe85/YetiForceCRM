@@ -19,22 +19,22 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com.
  * ****************************************************************************** */
-require_once 'include/database/PearDatabase.php';
-require_once 'include/utils/ListViewUtils.php';
-require_once 'include/utils/CommonUtils.php';
-require_once 'include/utils/InventoryUtils.php';
-require_once 'include/utils/SearchUtils.php';
-require_once 'include/events/SqlResultIterator.php';
-require_once 'include/fields/DateTimeField.php';
-require_once 'include/fields/DateTimeRange.php';
-require_once 'include/fields/CurrencyField.php';
-require_once 'include/CRMEntity.php';
-include_once 'modules/Vtiger/CRMEntity.php';
-require_once 'include/runtime/Cache.php';
-require_once 'modules/Vtiger/helpers/Util.php';
-require_once 'modules/PickList/DependentPickListUtils.php';
-require_once 'modules/Users/Users.php';
-require_once 'include/Webservices/Utils.php';
+require_once ROOT_DIRECTORY . 'include/database/PearDatabase.php';
+require_once ROOT_DIRECTORY . 'include/utils/ListViewUtils.php';
+require_once ROOT_DIRECTORY . 'include/utils/CommonUtils.php';
+require_once ROOT_DIRECTORY . 'include/utils/InventoryUtils.php';
+require_once ROOT_DIRECTORY . 'include/utils/SearchUtils.php';
+require_once ROOT_DIRECTORY . 'include/events/SqlResultIterator.php';
+require_once ROOT_DIRECTORY . 'include/fields/DateTimeField.php';
+require_once ROOT_DIRECTORY . 'include/fields/DateTimeRange.php';
+require_once ROOT_DIRECTORY . 'include/fields/CurrencyField.php';
+require_once ROOT_DIRECTORY . 'include/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
+require_once ROOT_DIRECTORY . 'include/runtime/Cache.php';
+require_once ROOT_DIRECTORY . 'modules/Vtiger/helpers/Util.php';
+require_once ROOT_DIRECTORY . 'modules/PickList/DependentPickListUtils.php';
+require_once ROOT_DIRECTORY . 'modules/Users/Users.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Utils.php';
 
 // Constants to be defined here
 // For Migration status.
@@ -218,8 +218,8 @@ function getActionname($actionid)
 		\App\Log::trace('Exiting getActionname method ...');
 		return $actionName;
 	}
-	if (file_exists('user_privileges/tabdata.php') && (filesize('user_privileges/tabdata.php') != 0)) {
-		include('user_privileges/tabdata.php');
+	if (file_exists(ROOT_DIRECTORY . 'user_privileges/tabdata.php') && (filesize(ROOT_DIRECTORY . 'user_privileges/tabdata.php') != 0)) {
+		include(ROOT_DIRECTORY . 'user_privileges/tabdata.php');
 		$actionName = $action_name_array[$actionid];
 	} else {
 		$query = 'select actionname from vtiger_actionmapping where actionid=? and securitycheck=0';
@@ -514,7 +514,7 @@ function getRelationTables($module, $secmodule)
 function DeleteEntity($destinationModule, $sourceModule, $focus, $destinationRecordId, $sourceRecordId, $relatedName = false)
 {
 	\App\Log::trace("Entering DeleteEntity method ($destinationModule, $sourceModule, $destinationRecordId, $sourceRecordId)");
-	require_once('include/events/include.php');
+	require_once(ROOT_DIRECTORY . 'include/events/include.php');
 	if ($destinationModule != $sourceModule && !empty($sourceModule) && !empty($sourceRecordId)) {
 		$eventHandler = new App\EventHandler();
 		$eventHandler->setModuleName($sourceModule);

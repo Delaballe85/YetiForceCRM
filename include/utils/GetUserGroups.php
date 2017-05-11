@@ -12,8 +12,8 @@
 /** Class to retreive all the Parent Groups of the specified Group
  *
  */
-require_once('include/utils/UserInfoUtil.php');
-require_once('include/utils/GetParentGroups.php');
+require_once ROOT_DIRECTORY . 'include/utils/UserInfoUtil.php';
+require_once ROOT_DIRECTORY . 'include/utils/GetParentGroups.php';
 
 class GetUserGroups
 {

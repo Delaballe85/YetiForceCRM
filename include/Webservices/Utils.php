@@ -9,21 +9,21 @@
  * Contributor(s): YetiForce.com
  * *********************************************************************************** */
 
-require_once('include/database/PearDatabase.php');
-require_once("modules/Users/Users.php");
-require_once 'include/Webservices/WebserviceField.php';
-require_once 'include/Webservices/EntityMeta.php';
-require_once 'include/Webservices/VtigerWebserviceObject.php';
-require_once("include/Webservices/VtigerCRMObject.php");
-require_once("include/Webservices/VtigerCRMObjectMeta.php");
-require_once("include/Webservices/DataTransform.php");
-require_once("include/Webservices/WebServiceError.php");
-require_once 'include/utils/utils.php';
-require_once 'include/utils/UserInfoUtil.php';
-require_once 'include/Webservices/ModuleTypes.php';
-require_once 'include/utils/VtlibUtils.php';
-require_once 'include/Webservices/WebserviceEntityOperation.php';
-require_once 'include/Webservices/PreserveGlobal.php';
+require_once ROOT_DIRECTORY . 'include/database/PearDatabase.php';
+require_once ROOT_DIRECTORY . 'modules/Users/Users.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/WebserviceField.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/EntityMeta.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerWebserviceObject.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerCRMObject.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerCRMObjectMeta.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/DataTransform.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/WebServiceError.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/utils/UserInfoUtil.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/ModuleTypes.php';
+require_once ROOT_DIRECTORY . 'include/utils/VtlibUtils.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/WebserviceEntityOperation.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/PreserveGlobal.php';
 
 /* Function to return all the users in the groups that this user is part of.
  * @param $id - id of the user
@@ -32,8 +32,8 @@ require_once 'include/Webservices/PreserveGlobal.php';
 
 function vtws_getUsersInTheSameGroup($id)
 {
-	require_once('include/utils/GetGroupUsers.php');
-	require_once('include/utils/GetUserGroups.php');
+	require_once(ROOT_DIRECTORY . 'include/utils/GetGroupUsers.php');
+	require_once(ROOT_DIRECTORY . 'include/utils/GetUserGroups.php');
 
 	$groupUsers = new GetGroupUsers();
 	$userGroups = new GetUserGroups();
@@ -82,8 +82,8 @@ function vtws_getVtigerVersion()
 function vtws_getUserAccessibleGroups($moduleId, $user)
 {
 	$adb = PearDatabase::getInstance();
-	require('user_privileges/user_privileges_' . $user->id . '.php');
-	require('user_privileges/sharing_privileges_' . $user->id . '.php');
+	require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $user->id . '.php');
+	require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $user->id . '.php');
 	$tabName = \App\Module::getModuleName($moduleId);
 	if ($is_admin === false && $profileGlobalPermission[2] == 1 &&
 		($defaultOrgSharingPermission[$moduleId] == 3 || $defaultOrgSharingPermission[$moduleId] == 0)) {
@@ -825,8 +825,8 @@ function vtws_transferOwnershipForWorkflowTasks($ownerModel, $newOwnerModel)
 		$taskComponents = explode(':', $task);
 		$classNameWithDoubleQuotes = $taskComponents[2];
 		$className = str_replace('"', '', $classNameWithDoubleQuotes);
-		require_once("modules/com_vtiger_workflow/VTTaskManager.php");
-		require_once 'modules/com_vtiger_workflow/tasks/' . $className . '.php';
+		require_once(ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTTaskManager.php');
+		require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/tasks/' . $className . '.php';
 		$unserializeTask = unserialize($task);
 		if (array_key_exists('field_value_mapping', $unserializeTask)) {
 			$fieldMapping = \App\Json::decode($unserializeTask->field_value_mapping);
@@ -866,7 +866,7 @@ function vtws_getWebserviceTranslatedStringForLanguage($label, $currentLanguage)
 	static $translations = [];
 	$currentLanguage = vtws_getWebserviceCurrentLanguage();
 	if (empty($translations[$currentLanguage])) {
-		include 'languages/' . $currentLanguage . '/Webservices.php';
+		include ROOT_DIRECTORY . 'languages/' . $currentLanguage . '/Webservices.php';
 		$translations[$currentLanguage] = $languageStrings;
 	}
 	if (isset($translations[$currentLanguage][$label])) {

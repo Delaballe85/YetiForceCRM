@@ -303,7 +303,7 @@ class Settings_LangManagement_Module_Model extends Settings_Vtiger_Module_Model
 			return false;
 		}
 		$files = array();
-		$objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir), RecursiveIteratorIterator::SELF_FIRST);
+		$objects = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir), \RecursiveIteratorIterator::SELF_FIRST);
 		foreach ($objects as $name => $object) {
 			if (strpos($object->getFilename(), '.php') !== false) {
 				$name = str_replace('.php', "", $name);

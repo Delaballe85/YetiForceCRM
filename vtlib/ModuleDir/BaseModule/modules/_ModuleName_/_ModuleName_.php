@@ -9,7 +9,7 @@
  * Contributor(s): YetiForce.com
  * ********************************************************************************** */
 
-include_once 'modules/Vtiger/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
 
 class _ModuleName_ extends Vtiger_CRMEntity
 {

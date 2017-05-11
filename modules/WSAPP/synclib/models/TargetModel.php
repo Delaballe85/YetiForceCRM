@@ -8,11 +8,11 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once 'modules/WSAPP/synclib/models/SyncRecordModel.php';
+require_once ROOT_DIRECTORY . 'modules/WSAPP/synclib/models/SyncRecordModel.php';
 
 class WSAPP_TargetModel extends WSAPP_SyncRecordModel
 {
-	
+
 }
 
 ?>

@@ -11,8 +11,8 @@
 /*
  * Workflow Record Model Class
  */
-require_once 'modules/com_vtiger_workflow/include.php';
-require_once 'modules/com_vtiger_workflow/expression_engine/VTExpressionsManager.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/include.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/expression_engine/VTExpressionsManager.php';
 
 class Settings_Workflows_Record_Model extends Settings_Vtiger_Record_Model
 {

@@ -10,8 +10,8 @@
  * ********************************************************************************** */
 
 chdir(dirname(__FILE__) . '/../..');
-include_once 'include/main/WebUI.php';
-include_once 'include/Webservices/Utils.php';
+include_once ROOT_DIRECTORY . 'include/main/WebUI.php';
+include_once ROOT_DIRECTORY . 'include/Webservices/Utils.php';
 
 class Vtiger_Tools_Console_Controller
 {
@@ -29,7 +29,7 @@ class Vtiger_Tools_Console_Controller
 
 	protected function __construct()
 	{
-		
+
 	}
 
 	public function setArguments($args, $interactive)
@@ -401,7 +401,7 @@ class Vtiger_Tools_Console_LayoutController extends Vtiger_Tools_Console_Control
 					if (!file_exists($tplpath . $tplname)) {
 						$initialContent = "{* License Text *}\n";
 						// Enable debug to make it easy to implement.
-						$initialContent.= "{debug}{* REMOVE THIS LINE AFTER IMPLEMENTATION *}\n\n";
+						$initialContent .= "{debug}{* REMOVE THIS LINE AFTER IMPLEMENTATION *}\n\n";
 						file_put_contents($tplpath . $tplname, $initialContent);
 					}
 					file_put_contents($tplpath . $tplname, "{* $file *}\n", FILE_APPEND);

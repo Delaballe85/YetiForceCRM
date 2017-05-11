@@ -128,7 +128,7 @@ class Contacts extends CRMEntity
 		$current_user = vglobal('current_user');
 		\App\Log::trace("Entering create_export_query(" . $where . ") method ...");
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery("Contacts", "detail_view");
@@ -281,7 +281,7 @@ class Contacts extends CRMEntity
 	}
 	/*
 	 * Function to unlink all the dependent entities of the given Entity by Id
-	 * @param - $recordId 
+	 * @param - $recordId
 	 */
 
 	public function mark_deleted($recordId)

@@ -161,7 +161,7 @@ class Reports_ScheduleReports_Model extends Vtiger_Base_Model
 			}
 
 			if (!empty($recipients['Groups'])) {
-				require_once 'include/utils/GetGroupUsers.php';
+				require_once ROOT_DIRECTORY . 'include/utils/GetGroupUsers.php';
 				foreach ($recipients['Groups'] as $groupId) {
 					$userGroups = new GetGroupUsers();
 					$userGroups->getAllUsersInGroup($groupId);
@@ -248,7 +248,7 @@ class Reports_ScheduleReports_Model extends Vtiger_Base_Model
 	 */
 	public function getNextTriggerTime()
 	{
-		require_once 'modules/com_vtiger_workflow/VTWorkflowManager.php';
+		require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTWorkflowManager.php';
 		$default_timezone = vglobal('default_timezine');
 		$admin = Users::getActiveAdminUser();
 		$adminTimeZone = $admin->time_zone;

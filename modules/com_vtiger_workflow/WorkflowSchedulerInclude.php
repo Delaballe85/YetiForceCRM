@@ -8,17 +8,17 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once ('include/events/VTEntityData.php');
-require_once ('include/utils/utils.php');
-require_once ('modules/com_vtiger_workflow/VTWorkflowUtils.php');
-require_once ('modules/com_vtiger_workflow/VTWorkflowManager.php');
-require_once ('modules/com_vtiger_workflow/VTTaskManager.php');
-require_once ('modules/com_vtiger_workflow/VTTaskQueue.php');
-require_once ('modules/com_vtiger_workflow/VTEntityCache.php');
-require_once ('include/Webservices/WebserviceField.php');
-require_once ('include/Webservices/EntityMeta.php');
-require_once ('include/Webservices/VtigerWebserviceObject.php');
-require_once ('include/Webservices/VtigerCRMObject.php');
-require_once ('include/Webservices/VtigerCRMObjectMeta.php');
-require_once ('include/Webservices/DataTransform.php');
-require_once ('include/Webservices/Retrieve.php');
+require_once ROOT_DIRECTORY . 'include/events/VTEntityData.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTWorkflowUtils.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTWorkflowManager.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTTaskManager.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTTaskQueue.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTEntityCache.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/WebserviceField.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/EntityMeta.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerWebserviceObject.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerCRMObject.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerCRMObjectMeta.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/DataTransform.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Retrieve.php';

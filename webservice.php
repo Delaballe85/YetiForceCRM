@@ -7,13 +7,13 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  * ****************************************************************************** */
-include_once('include/main/WebUI.php');
-require_once('include/Webservices/Utils.php');
-require_once('include/Webservices/State.php');
-require_once('include/Webservices/OperationManager.php');
-require_once('include/Webservices/SessionManager.php');
+include_once ROOT_DIRECTORY . 'include/main/WebUI.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Utils.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/State.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/OperationManager.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/SessionManager.php';
 
-require_once('config/api.php');
+require_once ROOT_DIRECTORY . 'config/api.php';
 if (!in_array('webservices', $enabledServices)) {
 	echo 'Webservice - Service is not active';
 	return;

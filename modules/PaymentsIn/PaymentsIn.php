@@ -8,7 +8,7 @@
  * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * *********************************************************************************************************************************** */
-include_once 'modules/Vtiger/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
 
 class PaymentsIn extends Vtiger_CRMEntity
 {
@@ -106,7 +106,7 @@ class PaymentsIn extends Vtiger_CRMEntity
 			\App\Fields\RecordNumber::setNumber($modulename, '', '1');
 			$modcommentsModuleInstance = vtlib\Module::getInstance('ModComments');
 			if ($modcommentsModuleInstance && file_exists('modules/ModComments/ModComments.php')) {
-				include_once 'modules/ModComments/ModComments.php';
+				include_once ROOT_DIRECTORY . 'modules/ModComments/ModComments.php';
 				if (class_exists('ModComments'))
 					ModComments::addWidgetTo(array('Payments'));
 			}
@@ -128,15 +128,15 @@ class PaymentsIn extends Vtiger_CRMEntity
 
 			$this->addWorkflow($modulename);
 		} else if ($event_type == 'module.disabled') {
-			
+
 		} else if ($event_type == 'module.enabled') {
-			
+
 		} else if ($event_type == 'module.preuninstall') {
-			
+
 		} else if ($event_type == 'module.preupdate') {
-			
+
 		} else if ($event_type == 'module.postupdate') {
-			
+
 		}
 	}
 

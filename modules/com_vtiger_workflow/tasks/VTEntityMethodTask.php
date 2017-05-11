@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ********************************************************************************** */
-require_once('modules/com_vtiger_workflow/VTEntityMethodManager.php');
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTEntityMethodManager.php';
 
 class VTEntityMethodTask extends VTTask
 {

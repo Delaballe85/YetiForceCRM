@@ -8,8 +8,8 @@
  * All Rights Reserved.
  * ******************************************************************************* */
 
-require_once 'include/utils/utils.php';
-require_once 'modules/PickList/PickListUtils.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'modules/PickList/PickListUtils.php';
 
 class Vtiger_DependencyPicklist
 {
@@ -108,13 +108,13 @@ class Vtiger_DependencyPicklist
 			//to handle Accent Sensitive search in MySql
 			//reference Links http://dev.mysql.com/doc/refman/5.0/en/charset-convert.html , http://stackoverflow.com/questions/500826/how-to-conduct-an-accent-sensitive-search-in-mysql
 			$dependencyId = (new App\Db\Query())->select(['id'])->from('vtiger_picklist_dependency')
-					->where(['tabid' => $tabId, 'sourcefield' => $sourceField, 'targetfield' => $targetField, 'sourcevalue' => $sourceValue])
-					->scalar();
+				->where(['tabid' => $tabId, 'sourcefield' => $sourceField, 'targetfield' => $targetField, 'sourcevalue' => $sourceValue])
+				->scalar();
 			if ($dependencyId) {
 				App\Db::getInstance()->createCommand()->update('vtiger_picklist_dependency', [
 					'targetvalues' => $serializedTargetValues,
 					'criteria' => $serializedCriteria,
-				], ['id' => $dependencyId])->execute();
+					], ['id' => $dependencyId])->execute();
 			} else {
 				$db->createCommand()->insert('vtiger_picklist_dependency', [
 					'id' => $db->getUniqueID('vtiger_picklist_dependency'),
@@ -143,7 +143,7 @@ class Vtiger_DependencyPicklist
 		$dependencyMap['sourcefield'] = $sourceField;
 		$dependencyMap['targetfield'] = $targetField;
 		$dataReader = (new App\Db\Query())->from('vtiger_picklist_dependency')->where(['tabid' => \App\Module::getModuleId($module), 'sourcefield' => $sourceField, 'targetfield' => $targetField])
-			->createCommand()->query();
+				->createCommand()->query();
 		$valueMapping = [];
 		while ($row = $dataReader->read()) {
 			$valueMapping[] = [

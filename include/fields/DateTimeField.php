@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ********************************************************************************** */
-require_once 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
 
 class DateTimeField
 {

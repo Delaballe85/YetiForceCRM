@@ -28,7 +28,7 @@ class Vtiger_Language_Handler
 		if ($currentLanguage === false) {
 			$currentLanguage = self::getLanguage();
 		}
-		//decoding for Start Date & Time and End Date & Time 
+		//decoding for Start Date & Time and End Date & Time
 		if (!is_array($key)) {
 			$key = App\Purifier::decodeHtml($key);
 		}

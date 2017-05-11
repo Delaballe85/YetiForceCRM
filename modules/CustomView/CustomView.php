@@ -8,9 +8,9 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ****************************************************************************** */
-require_once('include/CRMEntity.php');
-require_once('include/utils/utils.php');
-require_once 'include/Webservices/Utils.php';
+require_once ROOT_DIRECTORY . 'include/CRMEntity.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Utils.php';
 global $adv_filter_options;
 
 $adv_filter_options = array(
@@ -94,7 +94,7 @@ class CustomView extends CRMEntity
 		$current_user = vglobal('current_user');
 		$tabid = \App\Module::getModuleId($this->customviewmodule);
 
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
 
 		$ssql = "select vtiger_customview.* from vtiger_customview inner join vtiger_tab on vtiger_tab.name = vtiger_customview.entitytype";
 		$ssql .= " where vtiger_customview.cvid=?";
@@ -134,7 +134,7 @@ class CustomView extends CRMEntity
 		$current_user = vglobal('current_user');
 		$tabid = \App\Module::getModuleId($this->customviewmodule);
 
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
 
 		$shtml_user = '';
 		$shtml_pending = '';
@@ -959,7 +959,7 @@ class CustomView extends CRMEntity
 		$custom_strings = \vtlib\Deprecated::getModuleTranslationStrings($currentLanguage, "CustomView");
 
 		\App\Log::trace("Entering isPermittedChangeStatus($status) method..............");
-		require('user_privileges/user_privileges_' . $currentUser->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $currentUser->id . '.php');
 		$status_details = [];
 		if ($is_admin) {
 			if ($status == App\CustomView::CV_STATUS_PENDING) {

@@ -5,7 +5,7 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * *********************************************************************************************************************************** */
@@ -23,14 +23,14 @@ class Vtiger_Menu_Model
 		$currentUser = Users_Record_Model::getCurrentUserModel();
 		$userPrivModel = Users_Privileges_Model::getCurrentUserPrivilegesModel();
 
-		$roleMenu = 'user_privileges/menu_' . filter_var($userPrivModel->get('roleid'), FILTER_SANITIZE_NUMBER_INT) . '.php';
+		$roleMenu = ROOT_DIRECTORY . 'user_privileges/menu_' . filter_var($userPrivModel->get('roleid'), FILTER_SANITIZE_NUMBER_INT) . '.php';
 		if (file_exists($roleMenu)) {
 			require($roleMenu);
 		} else {
-			require('user_privileges/menu_0.php');
+			require(ROOT_DIRECTORY . 'user_privileges/menu_0.php');
 		}
 		if (count($menus) == 0) {
-			require('user_privileges/menu_0.php');
+			require(ROOT_DIRECTORY . 'user_privileges/menu_0.php');
 		}
 		return $menus;
 	}
@@ -50,14 +50,14 @@ class Vtiger_Menu_Model
 		$breadcrumbs = false;
 		$request = App\Request::init();
 		$userPrivModel = Users_Privileges_Model::getCurrentUserPrivilegesModel();
-		$roleMenu = 'user_privileges/menu_' . filter_var($userPrivModel->get('roleid'), FILTER_SANITIZE_NUMBER_INT) . '.php';
+		$roleMenu = ROOT_DIRECTORY . 'user_privileges/menu_' . filter_var($userPrivModel->get('roleid'), FILTER_SANITIZE_NUMBER_INT) . '.php';
 		if (file_exists($roleMenu)) {
 			require($roleMenu);
 		} else {
-			require('user_privileges/menu_0.php');
+			require(ROOT_DIRECTORY . 'user_privileges/menu_0.php');
 		}
 		if (count($menus) == 0) {
-			require('user_privileges/menu_0.php');
+			require(ROOT_DIRECTORY . 'user_privileges/menu_0.php');
 		}
 		$moduleName = $request->getModule();
 		$view = $request->get('view');
@@ -172,9 +172,9 @@ class Vtiger_Menu_Model
 	}
 
 	/**
-	 * 
+	 *
 	 * @param type $url
-	 * @return type modulename 
+	 * @return type modulename
 	 */
 	public static function getModuleNameFromUrl($url)
 	{

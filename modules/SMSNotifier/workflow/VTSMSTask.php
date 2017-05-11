@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ********************************************************************************** */
-require_once('modules/SMSNotifier/SMSNotifier.php');
+require_once ROOT_DIRECTORY . 'modules/SMSNotifier/SMSNotifier.php';
 
 class VTSMSTask extends VTTask
 {

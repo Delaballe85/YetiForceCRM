@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once("include/Webservices/WebServiceErrorCode.php");
+require_once ROOT_DIRECTORY . "include/Webservices/WebServiceErrorCode.php";
 
 class WebServiceException extends Exception
 {

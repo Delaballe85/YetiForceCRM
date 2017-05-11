@@ -127,8 +127,8 @@ class Services extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -173,7 +173,7 @@ class Services extends CRMEntity
 	{
 		$current_user = vglobal('current_user');
 
-		include('include/utils/ExportUtils.php');
+		include(ROOT_DIRECTORY . 'include/utils/ExportUtils.php');
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('Services', 'detail_view');
@@ -255,7 +255,6 @@ class Services extends CRMEntity
 
 		return $query;
 	}
-
 
 	/**
 	 * Move the related records of the specified list of id's to the given record.
@@ -439,7 +438,7 @@ class Services extends CRMEntity
 	public function vtlib_handler($moduleName, $eventType)
 	{
 
-		require_once('include/utils/utils.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/utils.php');
 		$adb = PearDatabase::getInstance();
 
 		if ($eventType == 'module.postinstall') {
@@ -466,13 +465,13 @@ class Services extends CRMEntity
 			// Mark the module as Standard module
 			$adb->pquery('UPDATE vtiger_tab SET customized=0 WHERE name=?', array($moduleName));
 		} else if ($eventType == 'module.disabled') {
-			
+
 		} else if ($eventType == 'module.enabled') {
-			
+
 		} else if ($eventType == 'module.preuninstall') {
-			
+
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
 			$ServicesModule = vtlib\Module::getInstance('Services');
 			vtlib\Access::setDefaultSharing($ServicesModule);

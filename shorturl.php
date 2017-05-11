@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once 'include/RequirementsValidation.php';
-require_once 'include/main/WebUI.php';
+require_once ROOT_DIRECTORY . 'include/RequirementsValidation.php';
+require_once ROOT_DIRECTORY . 'include/main/WebUI.php';
 
 Vtiger_ShortURL_Helper::handle(\App\Request::_get('id'));

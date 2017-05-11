@@ -78,8 +78,8 @@ class Vtiger_CRMEntity extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -124,7 +124,7 @@ class Vtiger_CRMEntity extends CRMEntity
 	{
 		global $current_user, $currentModule;
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('ServiceContracts', "detail_view");

@@ -8,20 +8,20 @@
  * All Rights Reserved.
  * ****************************************************************************** */
 
-require_once('config/config.php');
-require_once('modules/Users/Users.php');
-require_once('include/utils/UserInfoUtil.php');
-require_once('include/utils/utils.php');
-require_once('include/utils/GetUserGroups.php');
-require_once('include/utils/GetGroupUsers.php');
+require_once ROOT_DIRECTORY . 'config/config.php';
+require_once ROOT_DIRECTORY . 'modules/Users/Users.php';
+require_once ROOT_DIRECTORY . 'include/utils/UserInfoUtil.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/utils/GetUserGroups.php';
+require_once ROOT_DIRECTORY . 'include/utils/GetGroupUsers.php';
 
-/** Creates a file with all the user, user-role,user-profile, user-groups informations 
+/** Creates a file with all the user, user-role,user-profile, user-groups informations
  * @param $userid -- user id:: Type integer
  * @returns user_privileges_userid file under the user_privileges directory
  */
 function createUserPrivilegesfile($userid)
 {
-	$handle = @fopen(ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'user_privileges/user_privileges_' . $userid . '.php', "w+");
+	$handle = @fopen(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $userid . '.php', "w+");
 
 	if ($handle) {
 		$newbuf = '';
@@ -71,15 +71,15 @@ function createUserPrivilegesfile($userid)
 	}
 }
 
-/** Creates a file with all the organization default sharing permissions and custom sharing permissins specific for the specified user. In this file the information of the other users whose data is shared with the specified user is stored.   
+/** Creates a file with all the organization default sharing permissions and custom sharing permissins specific for the specified user. In this file the information of the other users whose data is shared with the specified user is stored.
  * @param $userid -- user id:: Type integer
  * @returns sharing_privileges_userid file under the user_privileges directory
  */
 function createUserSharingPrivilegesfile($userid)
 {
 	\vtlib\Deprecated::checkFileAccessForInclusion('user_privileges/user_privileges_' . $userid . '.php');
-	require('user_privileges/user_privileges_' . $userid . '.php');
-	$handle = @fopen(ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'user_privileges/sharing_privileges_' . $userid . '.php', "w+");
+	require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $userid . '.php');
+	$handle = @fopen(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $userid . '.php', "w+");
 
 	if ($handle) {
 		$newbuf = "<?php\n";
@@ -91,7 +91,7 @@ function createUserSharingPrivilegesfile($userid)
 			return;
 		} else {
 			$sharingPrivileges = [];
-			//Constructig the Default Org Share Array
+//Constructig the Default Org Share Array
 			$def_org_share = \App\PrivilegeUtil::getAllDefaultSharingAction();
 			$newbuf .= "\$defaultOrgSharingPermission=" . constructArray($def_org_share) . ";\n";
 			$sharingPrivileges['defOrgShare'] = $def_org_share;
@@ -99,7 +99,7 @@ function createUserSharingPrivilegesfile($userid)
 			$relatedModuleShare = \App\PrivilegeUtil::getDatashareRelatedModules();
 			$newbuf .= "\$related_module_share=" . constructTwoDimensionalValueArray($relatedModuleShare) . ";\n";
 			$sharingPrivileges['relatedModuleShare'] = $relatedModuleShare;
-			//Constructing Account Sharing Rules
+//Constructing Account Sharing Rules
 			$account_share_per_array = App\PrivilegeUtil::getUserModuleSharingObjects('Accounts', $userid, $def_org_share, $current_user_roles, $parent_roles, $current_user_groups);
 			$account_share_read_per = $account_share_per_array['read'];
 			$account_share_write_per = $account_share_per_array['write'];
@@ -110,12 +110,12 @@ function createUserSharingPrivilegesfile($userid)
 			$newbuf .= "\$Accounts_share_read_permission=array('ROLE'=>" . constructTwoDimensionalCharIntSingleValueArray($account_share_read_per['ROLE']) . ",'GROUP'=>" . constructTwoDimensionalValueArray($account_share_read_per['GROUP']) . ");\n";
 			$newbuf .= "\$Accounts_share_write_permission=array('ROLE'=>" . constructTwoDimensionalCharIntSingleValueArray($account_share_write_per['ROLE']) . ",'GROUP'=>" . constructTwoDimensionalValueArray($account_share_write_per['GROUP']) . ");\n";
 			$sharingPrivileges['permission']['Accounts'] = ['read' => $account_share_read_per, 'write' => $account_share_write_per];
-			//Constructing Contact Sharing Rules
+//Constructing Contact Sharing Rules
 			$newbuf .= "\$Contacts_share_read_permission=array('ROLE'=>" . constructTwoDimensionalCharIntSingleValueArray($account_share_read_per['ROLE']) . ",'GROUP'=>" . constructTwoDimensionalValueArray($account_share_read_per['GROUP']) . ");\n";
 			$newbuf .= "\$Contacts_share_write_permission=array('ROLE'=>" . constructTwoDimensionalCharIntSingleValueArray($account_share_write_per['ROLE']) . ",'GROUP'=>" . constructTwoDimensionalValueArray($account_share_write_per['GROUP']) . ");\n";
 			$sharingPrivileges['permission']['Contacts'] = ['read' => $account_share_read_per, 'write' => $account_share_write_per];
 
-			//Constructing the Account Ticket Related Module Sharing Array
+//Constructing the Account Ticket Related Module Sharing Array
 			$acct_related_tkt = getRelatedModuleSharingArray('Accounts', 'HelpDesk', $account_sharingrule_members, $account_share_read_per, $account_share_write_per, $def_org_share);
 			$acc_tkt_share_read_per = $acct_related_tkt['read'];
 			$acc_tkt_share_write_per = $acct_related_tkt['write'];
@@ -139,17 +139,17 @@ function createUserSharingPrivilegesfile($userid)
 				$sharingPrivileges['permission'][$module_name] = ['read' => $mod_share_read_perm, 'write' => $mod_share_write_perm];
 			}
 			$newbuf .= 'return ' . \vtlib\Functions::varExportMin($sharingPrivileges) . ";\n";
-			// END
+// END
 			fputs($handle, $newbuf);
 			fclose($handle);
 
-			//Populating Temp Tables
+//Populating Temp Tables
 			populateSharingtmptables($userid);
 		}
 	}
 }
 
-/** Gives an array which contains the information for what all roles, groups and user's related module data that is to be shared  for the specified parent module and shared module 
+/** Gives an array which contains the information for what all roles, groups and user's related module data that is to be shared  for the specified parent module and shared module
 
  * @param $par_mod -- parent module name:: Type varchar
  * @param $share_mod -- shared module name:: Type varchar
@@ -158,7 +158,7 @@ function createUserSharingPrivilegesfile($userid)
  * @param $mod_sharingrule_members -- Sharing Rule Members array:: Type array
  * @param $$mod_share_read_per -- Sharing Module Read Permission array:: Type array
  * @param $$mod_share_write_per -- Sharing Module Write Permission array:: Type array
- * @returns $related_mod_sharing_permission; -- array which contains the id of roles,group and users related module data to be shared 
+ * @returns $related_mod_sharing_permission; -- array which contains the id of roles,group and users related module data to be shared
  */
 function getRelatedModuleSharingArray($par_mod, $share_mod, $mod_sharingrule_members, $mod_share_read_per, $mod_share_write_per, $def_org_share)
 {
@@ -309,10 +309,10 @@ function getRelatedModuleSharingArray($par_mod, $share_mod, $mod_sharingrule_mem
 	return $related_mod_sharing_permission;
 }
 
-/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file 
+/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file
 
  * @param $var -- input array:: Type array
- * @returns $code -- contains the whole array in a single string:: Type array 
+ * @returns $code -- contains the whole array in a single string:: Type array
  */
 function constructArray($var)
 {
@@ -326,10 +326,10 @@ function constructArray($var)
 	}
 }
 
-/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file 
+/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file
 
  * @param $var -- input array:: Type array
- * @returns $code -- contains the whole array in a single string:: Type array 
+ * @returns $code -- contains the whole array in a single string:: Type array
  */
 function constructSingleStringValueArray($var)
 {
@@ -351,10 +351,10 @@ function constructSingleStringValueArray($var)
 	}
 }
 
-/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file 
+/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file
 
  * @param $var -- input array:: Type array
- * @returns $code -- contains the whole array in a single string:: Type array 
+ * @returns $code -- contains the whole array in a single string:: Type array
  */
 function constructSingleStringKeyAndValueArray($var)
 {
@@ -376,10 +376,10 @@ function constructSingleStringKeyAndValueArray($var)
 	}
 }
 
-/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file 
+/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file
 
  * @param $var -- input array:: Type array
- * @returns $code -- contains the whole array in a single string:: Type array 
+ * @returns $code -- contains the whole array in a single string:: Type array
  */
 function constructSingleArray($var)
 {
@@ -393,10 +393,10 @@ function constructSingleArray($var)
 	}
 }
 
-/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file 
+/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file
 
  * @param $var -- input array:: Type array
- * @returns $code -- contains the whole array in a single string:: Type array 
+ * @returns $code -- contains the whole array in a single string:: Type array
  */
 function constructSingleCharArray($var)
 {
@@ -410,10 +410,10 @@ function constructSingleCharArray($var)
 	}
 }
 
-/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file 
+/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file
 
  * @param $var -- input array:: Type array
- * @returns $code -- contains the whole array in a single string:: Type array 
+ * @returns $code -- contains the whole array in a single string:: Type array
  */
 function constructTwoDimensionalArray($var)
 {
@@ -431,10 +431,10 @@ function constructTwoDimensionalArray($var)
 	}
 }
 
-/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file 
+/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file
 
  * @param $var -- input array:: Type array
- * @returns $code -- contains the whole array in a single string:: Type array 
+ * @returns $code -- contains the whole array in a single string:: Type array
  */
 function constructTwoDimensionalValueArray($var)
 {
@@ -452,10 +452,10 @@ function constructTwoDimensionalValueArray($var)
 	}
 }
 
-/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file 
+/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file
 
  * @param $var -- input array:: Type array
- * @returns $code -- contains the whole array in a single string:: Type array 
+ * @returns $code -- contains the whole array in a single string:: Type array
  */
 function constructTwoDimensionalCharIntSingleArray($var)
 {
@@ -473,10 +473,10 @@ function constructTwoDimensionalCharIntSingleArray($var)
 	}
 }
 
-/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file 
+/** Converts the input array  to a single string to facilitate the writing of the input array in a flat file
 
  * @param $var -- input array:: Type array
- * @returns $code -- contains the whole array in a single string:: Type array 
+ * @returns $code -- contains the whole array in a single string:: Type array
  */
 function constructTwoDimensionalCharIntSingleValueArray($var)
 {
@@ -494,21 +494,21 @@ function constructTwoDimensionalCharIntSingleValueArray($var)
 	}
 }
 
-/** Function to populate the read/wirte Sharing permissions data of user/groups for the specified user into the database 
+/** Function to populate the read/wirte Sharing permissions data of user/groups for the specified user into the database
  * @param $userid -- user id:: Type integer
  */
 function populateSharingtmptables($userid)
 {
 	$adb = PearDatabase::getInstance();
 	\vtlib\Deprecated::checkFileAccessForInclusion('user_privileges/sharing_privileges_' . $userid . '.php');
-	require('user_privileges/sharing_privileges_' . $userid . '.php');
-	//Deleting from the existing vtiger_tables
+	require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $userid . '.php');
+//Deleting from the existing vtiger_tables
 	$table_arr = Array('vtiger_tmp_read_user_sharing_per', 'vtiger_tmp_write_user_sharing_per', 'vtiger_tmp_read_group_sharing_per', 'vtiger_tmp_write_group_sharing_per', 'vtiger_tmp_read_user_rel_sharing_per', 'vtiger_tmp_write_user_rel_sharing_per', 'vtiger_tmp_read_group_rel_sharing_per', 'vtiger_tmp_write_group_rel_sharing_per');
 	foreach ($table_arr as $tabname) {
 		$adb->delete($tabname, 'userid = ?', [$userid]);
 	}
 
-	// Look up for modules for which sharing access is enabled.
+// Look up for modules for which sharing access is enabled.
 	$modules = \vtlib\Functions::getAllModules(true, true, 0, false, 0);
 	$sharingArray = array_column($modules, 'name');
 	foreach ($sharingArray as $module) {
@@ -520,7 +520,7 @@ function populateSharingtmptables($userid)
 		populateSharingPrivileges('GROUP', $userid, $module, 'read', $$module_sharing_read_permvar);
 		populateSharingPrivileges('GROUP', $userid, $module, 'write', $$module_sharing_write_permvar);
 	}
-	//Populating Values into the temp related sharing tables
+//Populating Values into the temp related sharing tables
 	foreach ($related_module_share as $rel_tab_id => $tabid_arr) {
 		$rel_tab_name = \App\Module::getModuleName($rel_tab_id);
 		if (!empty($rel_tab_name)) {
@@ -539,7 +539,7 @@ function populateSharingtmptables($userid)
 	}
 }
 
-/** Function to populate the read/wirte Sharing permissions data for the specified user into the database 
+/** Function to populate the read/wirte Sharing permissions data for the specified user into the database
  * @param $userid -- user id:: Type integer
  * @param $enttype -- can have the value of User or Group:: Type varchar
  * @param $module -- module name:: Type varchar
@@ -553,7 +553,7 @@ function populateSharingPrivileges($enttype, $userid, $module, $pertype, $var_na
 
 	if (!$var_name_arr) {
 		\vtlib\Deprecated::checkFileAccessForInclusion('user_privileges/sharing_privileges_' . $userid . '.php');
-		require('user_privileges/sharing_privileges_' . $userid . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $userid . '.php');
 	}
 
 	if ($enttype == 'USER') {
@@ -564,7 +564,7 @@ function populateSharingPrivileges($enttype, $userid, $module, $pertype, $var_na
 			$table_name = 'vtiger_tmp_write_user_sharing_per';
 			$var_name = $module . '_share_write_permission';
 		}
-		// Lookup for the variable if not set through function argument		
+// Lookup for the variable if not set through function argument
 		if (!$var_name_arr)
 			$var_name_arr = $$var_name;
 		$user_arr = [];
@@ -599,7 +599,7 @@ function populateSharingPrivileges($enttype, $userid, $module, $pertype, $var_na
 			$table_name = 'vtiger_tmp_write_group_sharing_per';
 			$var_name = $module . '_share_write_permission';
 		}
-		// Lookup for the variable if not set through function argument
+// Lookup for the variable if not set through function argument
 		if (!$var_name_arr)
 			$var_name_arr = $$var_name;
 		$grp_arr = [];
@@ -616,7 +616,7 @@ function populateSharingPrivileges($enttype, $userid, $module, $pertype, $var_na
 	}
 }
 
-/** Function to populate the read/wirte Sharing permissions related module data for the specified user into the database 
+/** Function to populate the read/wirte Sharing permissions related module data for the specified user into the database
  * @param $userid -- user id:: Type integer
  * @param $enttype -- can have the value of User or Group:: Type varchar
  * @param $module -- module name:: Type varchar
@@ -632,7 +632,7 @@ function populateRelatedSharingPrivileges($enttype, $userid, $module, $relmodule
 
 	if (!$var_name_arr) {
 		\vtlib\Deprecated::checkFileAccessForInclusion('user_privileges/sharing_privileges_' . $userid . '.php');
-		require('user_privileges/sharing_privileges_' . $userid . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $userid . '.php');
 	}
 
 	if ($enttype == 'USER') {
@@ -643,7 +643,7 @@ function populateRelatedSharingPrivileges($enttype, $userid, $module, $relmodule
 			$table_name = 'vtiger_tmp_write_user_rel_sharing_per';
 			$var_name = $module . '_' . $relmodule . '_share_write_permission';
 		}
-		// Lookup for the variable if not set through function argument
+// Lookup for the variable if not set through function argument
 		if (!$var_name_arr)
 			$var_name_arr = $$var_name;
 		$user_arr = [];
@@ -678,7 +678,7 @@ function populateRelatedSharingPrivileges($enttype, $userid, $module, $relmodule
 			$table_name = 'vtiger_tmp_write_group_rel_sharing_per';
 			$var_name = $module . '_' . $relmodule . '_share_write_permission';
 		}
-		// Lookup for the variable if not set through function argument
+// Lookup for the variable if not set through function argument
 		if (!$var_name_arr)
 			$var_name_arr = $$var_name;
 		$grp_arr = [];

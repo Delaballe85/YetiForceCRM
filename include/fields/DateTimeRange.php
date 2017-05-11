@@ -1,7 +1,7 @@
 <?php
 /* {[The file is published on the basis of YetiForce Public License that can be found in the following directory: licenses/License.html]} */
 
-require_once 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
 
 class DateTimeRange
 {

@@ -8,8 +8,8 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com.
  * ****************************************************************************** */
-require_once('include/utils/UserInfoUtil.php');
-require_once 'modules/Reports/ReportUtils.php';
+require_once ROOT_DIRECTORY . 'include/utils/UserInfoUtil.php';
+require_once ROOT_DIRECTORY . 'modules/Reports/ReportUtils.php';
 global $calpath;
 global $app_list_strings;
 global $modules;
@@ -81,8 +81,8 @@ class Reports extends CRMEntity
 				$ssql .= " where vtiger_report.reportid = ?";
 				$params = array($reportid);
 
-				require_once('include/utils/GetUserGroups.php');
-				require('user_privileges/user_privileges_' . $current_user->id . '.php');
+				require_once(ROOT_DIRECTORY . 'include/utils/GetUserGroups.php');
+				require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
 				$userGroups = new GetUserGroups();
 				$userGroups->getAllUserGroups($current_user->id);
 				$user_groups = $userGroups->user_groups;
@@ -143,7 +143,7 @@ class Reports extends CRMEntity
 		$adb = PearDatabase::getInstance();
 		if (!isset($module))
 			return;
-		require_once('include/utils/utils.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/utils.php');
 		$tabid = \App\Module::getModuleId($module);
 		if ($module == 'Calendar') {
 			$tabid = [9, 16];
@@ -390,7 +390,7 @@ class Reports extends CRMEntity
 		$mod_strings = vglobal('mod_strings');
 		$returndata = [];
 
-		require_once('include/utils/UserInfoUtil.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/UserInfoUtil.php');
 
 		$sql = "select vtiger_report.*, vtiger_reportmodules.*, vtiger_reportfolder.folderid from vtiger_report inner join vtiger_reportfolder on vtiger_reportfolder.folderid = vtiger_report.folderid";
 		$sql .= " inner join vtiger_reportmodules on vtiger_reportmodules.reportmodulesid = vtiger_report.reportid";
@@ -403,8 +403,8 @@ class Reports extends CRMEntity
 			$params[] = $rpt_fldr_id;
 		}
 
-		require('user_privileges/user_privileges_' . $currentUser->getId() . '.php');
-		require_once('include/utils/GetUserGroups.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $currentUser->getId() . '.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/GetUserGroups.php');
 		$userGroups = new GetUserGroups();
 		$userGroups->getAllUserGroups($currentUser->getId());
 		$user_groups = $userGroups->user_groups;
@@ -823,7 +823,7 @@ class Reports extends CRMEntity
 			}
 			if ($selmod_field_disabled === false) {
 				list($tablename, $colname, $module_field, $fieldname, $single) = explode(':', $fieldcolname);
-				require('user_privileges/user_privileges_' . $current_user->id . '.php');
+				require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
 				list($module, $field) = explode('__', $module_field);
 				if (sizeof($permitted_fields) == 0 && $is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1) {
 					$permitted_fields = $this->getaccesfield($module);
@@ -839,7 +839,7 @@ class Reports extends CRMEntity
 				$fieldlabel = $mod_lbl . ' ' . $fld_lbl;
 				if (in_array($mod, $inventoryModules) && $fieldname == 'serviceid') {
 					$shtml .= "<option permission='yes' value=\"" . $fieldcolname . "\">" . $fieldlabel . "</option>";
-				} else if (!\App\Field::getFieldPermission($mod,$fieldname)&& $colname !== "crmid") {
+				} else if (!\App\Field::getFieldPermission($mod, $fieldname) && $colname !== "crmid") {
 					$shtml .= "<option permission='no' value=\"" . $fieldcolname . "\" disabled = 'true'>" . $fieldlabel . "</option>";
 				} else {
 					$shtml .= "<option permission='yes' value=\"" . $fieldcolname . "\">" . $fieldlabel . "</option>";

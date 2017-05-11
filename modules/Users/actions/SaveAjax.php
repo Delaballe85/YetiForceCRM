@@ -285,10 +285,10 @@ class Users_SaveAjax_Action extends Vtiger_SaveAjax_Action
 			$entity = $recordModel->getEntity();
 			$entity->createAccessKey();
 
-			require_once('modules/Users/CreateUserPrivilegeFile.php');
+			require_once(ROOT_DIRECTORY . 'modules/Users/CreateUserPrivilegeFile.php');
 			createUserPrivilegesfile($recordId);
 
-			require("user_privileges/user_privileges_$recordId.php");
+			require(ROOT_DIRECTORY . "user_privileges/user_privileges_$recordId.php");
 			$newAccessKey = $user_info['accesskey'];
 			if ($newAccessKey != $oldAccessKey) {
 				$response->setResult(array('message' => vtranslate('LBL_ACCESS_KEY_UPDATED_SUCCESSFULLY', $moduleName), 'accessKey' => $newAccessKey));

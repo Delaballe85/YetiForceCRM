@@ -124,7 +124,7 @@ class Vtiger_Module_Model extends \vtlib\Module
 	 */
 	public function isTrackingEnabled()
 	{
-		require_once 'modules/ModTracker/ModTracker.php';
+		require_once ROOT_DIRECTORY . 'modules/ModTracker/ModTracker.php';
 		$trackingEnabled = ModTracker::isTrackingEnabledForModule($this->getName());
 		return ($this->isActive() && $trackingEnabled);
 	}

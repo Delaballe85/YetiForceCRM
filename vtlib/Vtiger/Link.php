@@ -10,7 +10,7 @@
  * ********************************************************************************** */
 namespace vtlib;
 
-include_once('vtlib/Vtiger/Utils/StringTemplate.php');
+include_once ROOT_DIRECTORY . 'vtlib/Vtiger/Utils/StringTemplate.php';
 
 /**
  * Provides API to handle custom links
@@ -153,7 +153,7 @@ class Link
 	/**
 	 * Get all the link related to module based on type
 	 * @param Integer Module ID
-	 * @param mixed String or List of types to select 
+	 * @param mixed String or List of types to select
 	 * @param Map Key-Value pair to use for formating the link url
 	 */
 	static function getAllByType($tabid, $type = false, $parameters = false)

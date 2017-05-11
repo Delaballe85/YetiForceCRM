@@ -10,11 +10,11 @@
  * ****************************************************************************** */
 
 
-/** Class to retreive all the vtiger_users present in a group 
+/** Class to retreive all the vtiger_users present in a group
  *
  */
-require_once('include/utils/UserInfoUtil.php');
-require_once('include/utils/GetParentGroups.php');
+require_once ROOT_DIRECTORY . 'include/utils/UserInfoUtil.php';
+require_once ROOT_DIRECTORY . 'include/utils/GetParentGroups.php';
 
 class GetGroupUsers
 {
@@ -30,7 +30,7 @@ class GetGroupUsers
 	public function getAllUsersInGroup($groupid)
 	{
 		$adb = PearDatabase::getInstance();
-		
+
 		\App\Log::trace("Entering getAllUsersInGroup(" . $groupid . ") method...");
 		//Retreiving from the user2grouptable
 		$query = "select * from vtiger_users2group where groupid=?";

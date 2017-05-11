@@ -391,7 +391,7 @@ class Functions
 
 	public static function initStorageFileDirectory($module = false)
 	{
-		$filepath = 'storage/';
+		$filepath = ROOT_DIRECTORY . 'public/storage/';
 
 		if ($module && in_array($module, array('Users', 'Contacts', 'Products', 'OSSMailView', 'MultiImage'))) {
 			$filepath .= $module . '/';
@@ -655,14 +655,14 @@ class Functions
 	}
 
 	/**
-	 * myBcmod - get modulus (substitute for bcmod) 
-	 * string my_bcmod ( string left_operand, int modulus ) 
-	 * left_operand can be really big, but be carefull with modulus :( 
-	 * by Andrius Baranauskas and Laurynas Butkus :) Vilnius, Lithuania 
+	 * myBcmod - get modulus (substitute for bcmod)
+	 * string my_bcmod ( string left_operand, int modulus )
+	 * left_operand can be really big, but be carefull with modulus :(
+	 * by Andrius Baranauskas and Laurynas Butkus :) Vilnius, Lithuania
 	 * */
 	public static function myBcmod($x, $y)
 	{
-		// how many numbers to take at once? carefull not to exceed (int) 
+		// how many numbers to take at once? carefull not to exceed (int)
 		$take = 5;
 		$mod = '';
 
@@ -702,7 +702,7 @@ class Functions
 			$response->setEmitType(\Vtiger_Response::$EMIT_JSON);
 			$trace = '';
 			if (\AppConfig::debug('DISPLAY_DEBUG_BACKTRACE') && is_object($e)) {
-				$trace = str_replace(ROOT_DIRECTORY . DIRECTORY_SEPARATOR, '', $e->getTraceAsString());
+				$trace = str_replace(ROOT_DIRECTORY, '', $e->getTraceAsString());
 			}
 			if (is_object($e)) {
 				$response->setError($e->getCode(), $e->getMessage(), $trace);
@@ -788,7 +788,7 @@ class Functions
 
 	public static function recurseDelete($src)
 	{
-		$rootDir = ROOT_DIRECTORY . DIRECTORY_SEPARATOR;
+		$rootDir = ROOT_DIRECTORY;
 		if (!file_exists($rootDir . $src))
 			return;
 		$dirs = [];
@@ -813,7 +813,7 @@ class Functions
 
 	public function recurseCopy($src, $dest, $delete = false)
 	{
-		$rootDir = ROOT_DIRECTORY . DIRECTORY_SEPARATOR;
+		$rootDir = ROOT_DIRECTORY;
 		if (!file_exists($rootDir . $src)) {
 			return;
 		}
@@ -915,7 +915,7 @@ class Functions
 	public static function getDiskSpace($dir = '')
 	{
 		if ($dir == '') {
-			$dir = ROOT_DIRECTORY . DIRECTORY_SEPARATOR;
+			$dir = ROOT_DIRECTORY;
 		}
 		$total = disk_total_space($dir);
 		$free = disk_free_space($dir);

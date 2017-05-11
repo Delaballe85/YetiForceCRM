@@ -9,13 +9,13 @@
  * Contributor(s): YetiForce.com
  * *********************************************************************************** */
 
-include_once 'include/Webservices/DescribeObject.php';
+include_once ROOT_DIRECTORY . 'include/Webservices/DescribeObject.php';
 
 function vtws_describe_partial($elementType, $user)
 {
 
 	$adb = PearDatabase::getInstance();
-	
+
 	$webserviceObject = VtigerWebserviceObject::fromName($adb, $elementType);
 	$handlerPath = $webserviceObject->getHandlerPath();
 	$handlerClass = $webserviceObject->getHandlerClass();

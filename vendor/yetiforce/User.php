@@ -99,10 +99,10 @@ class User
 		if (isset(static::$userPrivilegesCache[$userId])) {
 			return self::$userPrivilegesCache[$userId];
 		}
-		if (!file_exists("user_privileges/user_privileges_{$userId}.php")) {
+		if (!file_exists(ROOT_DIRECTORY . "user_privileges/user_privileges_{$userId}.php")) {
 			return null;
 		}
-		$privileges = require("user_privileges/user_privileges_{$userId}.php");
+		$privileges = require(ROOT_DIRECTORY . "user_privileges/user_privileges_{$userId}.php");
 
 		$valueMap = [];
 		$valueMap['id'] = $userId;
@@ -157,10 +157,10 @@ class User
 		if (isset(self::$userSharingCache[$userId])) {
 			return self::$userSharingCache[$userId];
 		}
-		if (!file_exists("user_privileges/sharing_privileges_{$userId}.php")) {
+		if (!file_exists(ROOT_DIRECTORY . "user_privileges/sharing_privileges_{$userId}.php")) {
 			return null;
 		}
-		$sharingPrivileges = require("user_privileges/sharing_privileges_{$userId}.php");
+		$sharingPrivileges = require(ROOT_DIRECTORY . "user_privileges/sharing_privileges_{$userId}.php");
 		self::$userSharingCache[$userId] = $sharingPrivileges;
 		return $sharingPrivileges;
 	}

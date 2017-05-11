@@ -7,7 +7,7 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  * **************************************************************************** */
-require_once("include/events/SqlResultIterator.php");
+require_once(ROOT_DIRECTORY . "include/events/SqlResultIterator.php");
 
 class VTEntityMethodManager
 {
@@ -58,7 +58,7 @@ class VTEntityMethodManager
 	  } */
 
 	/**
-	 * Function to remove workflowtasks entity method 
+	 * Function to remove workflowtasks entity method
 	 * @param string Module Name
 	 * @param string Entity Method Name.
 	 */

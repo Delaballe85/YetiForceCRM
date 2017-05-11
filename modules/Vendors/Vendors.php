@@ -77,7 +77,7 @@ class Vendors extends CRMEntity
 		$current_user = vglobal('current_user');
 		\App\Log::trace('Entering create_export_query(' . $where . ') method ...');
 
-		include('include/utils/ExportUtils.php');
+		include(ROOT_DIRECTORY . 'include/utils/ExportUtils.php');
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('Vendors', 'detail_view');

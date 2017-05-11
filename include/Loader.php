@@ -35,10 +35,18 @@ class Vtiger_Loader
 		// TO handle loading vtiger files
 		if (strpos($qualifiedName, '~') === 0) {
 			$file = str_replace('~', '', $qualifiedName);
-			$file = ROOT_DIRECTORY . DIRECTORY_SEPARATOR . $file;
+			if ($fileExtension != 'js' && $fileExtension != 'css') {
+				$file = ROOT_DIRECTORY . $file;
+			} else {
+				$file = ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . $file;
+			}
 		} else {
 			$file = str_replace('.', DIRECTORY_SEPARATOR, $qualifiedName) . '.' . $fileExtension;
-			$file = ROOT_DIRECTORY . DIRECTORY_SEPARATOR . $file;
+			if ($fileExtension != 'js' && $fileExtension != 'css') {
+				$file = ROOT_DIRECTORY . $file;
+			} else {
+				$file = ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . $file;
+			}
 		}
 		return $file;
 	}
@@ -204,5 +212,4 @@ function vimport($qualifiedName)
 {
 	return Vtiger_Loader::includeOnce($qualifiedName);
 }
-
 spl_autoload_register('Vtiger_Loader::autoLoad');

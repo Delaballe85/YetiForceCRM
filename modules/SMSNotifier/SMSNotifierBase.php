@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ********************************************************************************** */
-require_once('modules/Vtiger/CRMEntity.php');
+require_once(ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php');
 
 class SMSNotifierBase extends CRMEntity
 {
@@ -144,7 +144,7 @@ class SMSNotifierBase extends CRMEntity
 			$columnname = $this->db->query_result($linkedModulesQuery, $i, 'columnname');
 
 			\vtlib\Deprecated::checkFileAccessForInclusion("modules/$related_module/$related_module.php");
-			require_once("modules/$related_module/$related_module.php");
+			require_once(ROOT_DIRECTORY . "modules/$related_module/$related_module.php");
 			$other = new $related_module();
 			vtlib_setup_modulevars($related_module, $other);
 
@@ -165,8 +165,8 @@ class SMSNotifierBase extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -212,7 +212,7 @@ class SMSNotifierBase extends CRMEntity
 		$current_user = vglobal('current_user');
 		$thismodule = \App\Request::_get('module');
 
-		include('include/utils/ExportUtils.php');
+		include(ROOT_DIRECTORY . 'include/utils/ExportUtils.php');
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery($thismodule, 'detail_view');
@@ -241,7 +241,7 @@ class SMSNotifierBase extends CRMEntity
 			$columnname = $this->db->query_result($linkedModulesQuery, $i, 'columnname');
 
 			\vtlib\Deprecated::checkFileAccessForInclusion("modules/$related_module/$related_module.php");
-			require_once("modules/$related_module/$related_module.php");
+			require_once(ROOT_DIRECTORY . "modules/$related_module/$related_module.php");
 			$other = new $related_module();
 			vtlib_setup_modulevars($related_module, $other);
 
@@ -255,8 +255,8 @@ class SMSNotifierBase extends CRMEntity
 		else
 			$query .= " WHERE $where_auto";
 
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		// Security Check for Field Access
 		if ($is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1 && $defaultOrgSharingPermission[7] == 3) {
@@ -349,11 +349,11 @@ class SMSNotifierBase extends CRMEntity
 		} else if ($event_type == 'module.enabled') {
 			$registerLinks = true;
 		} else if ($event_type == 'module.preuninstall') {
-			
+
 		} else if ($event_type == 'module.preupdate') {
-			
+
 		} else if ($event_type == 'module.postupdate') {
-			
+
 		}
 
 		if ($unregisterLinks) {

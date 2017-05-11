@@ -5,7 +5,7 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * *********************************************************************************************************************************** */
 
@@ -47,7 +47,7 @@ class Settings_Users_Module_Model extends Settings_Vtiger_Module_Model
 			$value = implode(',', $value);
 		}
 		App\Db::getInstance()->createCommand()
-			->update('yetiforce_auth', ['value' => $value], ['type' =>  $param['type'], 'param' => $param['param']])
+			->update('yetiforce_auth', ['value' => $value], ['type' => $param['type'], 'param' => $param['param']])
 			->execute();
 		return true;
 	}
@@ -84,13 +84,13 @@ class Settings_Users_Module_Model extends Settings_Vtiger_Module_Model
 			$content .= "'$user'=>[" . rtrim($users, ',') . "],";
 		}
 		$content .= '];';
-		$file = 'user_privileges/switchUsers.php';
+		$file = ROOT_DIRECTORY . 'user_privileges/switchUsers.php';
 		file_put_contents($file, $content);
 	}
 
 	public function getSwitchUsers()
 	{
-		require('user_privileges/switchUsers.php');
+		require(ROOT_DIRECTORY . 'user_privileges/switchUsers.php');
 		return $switchUsersRaw;
 	}
 
@@ -168,13 +168,13 @@ class Settings_Users_Module_Model extends Settings_Vtiger_Module_Model
 			$content .= "'$user'=>[" . rtrim($users, ',') . "],";
 		}
 		$content .= '];';
-		$file = 'user_privileges/switchUsers.php';
+		$file = ROOT_DIRECTORY . 'user_privileges/switchUsers.php';
 		file_put_contents($file, $content);
 	}
 
 	public function getLocks()
 	{
-		include('user_privileges/locks.php');
+		include(ROOT_DIRECTORY . 'user_privileges/locks.php');
 		return $locksRaw;
 	}
 
@@ -225,7 +225,7 @@ class Settings_Users_Module_Model extends Settings_Vtiger_Module_Model
 		}
 		$content = rtrim($content, ',');
 		$content .= '];';
-		$file = 'user_privileges/locks.php';
+		$file = ROOT_DIRECTORY . 'user_privileges/locks.php';
 		file_put_contents($file, $content);
 		$newValues = $this->getLocks();
 		$difference = vtlib\Functions::arrayDiffAssocRecursive($newValues, $oldValues);

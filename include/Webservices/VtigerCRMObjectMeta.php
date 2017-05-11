@@ -52,7 +52,7 @@ class VtigerCRMObjectMeta extends EntityMeta
 
 	/**
 	 * returns tabid of the current object.
-	 * @return Integer 
+	 * @return Integer
 	 */
 	public function getTabId()
 	{
@@ -341,7 +341,7 @@ class VtigerCRMObjectMeta extends EntityMeta
 	public function retrieveMeta()
 	{
 
-		require_once('modules/CustomView/CustomView.php');
+		require_once(ROOT_DIRECTORY . 'modules/CustomView/CustomView.php');
 		$current_user = vtws_preserveGlobal('current_user', $this->user);
 		$theme = vtws_preserveGlobal('theme', $this->user->theme);
 		$default_language = AppConfig::main('default_language');
@@ -404,8 +404,8 @@ class VtigerCRMObjectMeta extends EntityMeta
 	public function exists($recordId)
 	{
 		// Caching user existence value for optimizing repeated reads.
-		// 
-		// NOTE: We are not caching the record existence 
+		//
+		// NOTE: We are not caching the record existence
 		// to ensure only latest state from DB is sent.
 		$exists = false;
 		if ($this->objectName == 'Users') {

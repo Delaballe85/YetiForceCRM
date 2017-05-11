@@ -110,14 +110,14 @@ class Deprecated
 			$actionname_array[$actionid] = $actionname;
 		}
 
-		$filename = 'user_privileges/tabdata.php';
+		$filename = ROOT_DIRECTORY . 'user_privileges/tabdata.php';
 
 		if (file_exists($filename)) {
 			if (is_writable($filename)) {
 				if (!$handle = fopen($filename, 'w+')) {
 					throw new \Exception\NoPermitted("Cannot open file ($filename)");
 				}
-				require_once('modules/Users/CreateUserPrivilegeFile.php');
+				require_once(ROOT_DIRECTORY . 'modules/Users/CreateUserPrivilegeFile.php');
 				$newbuf = "<?php\n";
 				$newbuf .= "\$tab_info_array=" . \vtlib\Functions::varExportMin($result_array) . ";\n";
 				$newbuf .= "\$tab_seq_array=" . \vtlib\Functions::varExportMin($seq_array) . ";\n";
@@ -175,7 +175,7 @@ class Deprecated
 	public static function getSmartyCompiledTemplateFile($template_file, $path = null)
 	{
 		if ($path === null) {
-			$path = ROOT_DIRECTORY . '/cache/templates_c/';
+			$path = ROOT_DIRECTORY . 'cache/templates_c/';
 		}
 		$mydir = @opendir($path);
 		$compiled_file = null;
@@ -201,10 +201,13 @@ class Deprecated
 	{
 		$unsafeDirectories = array('storage', 'cache', 'test');
 		$realfilepath = realpath($filepath);
+		if (!$realfilepath) {
+			$realfilepath = realpath(ROOT_DIRECTORY . $filepath);
+		}
 
 		/** Replace all \\ with \ first */
 		$realfilepath = str_replace('\\\\', '\\', $realfilepath);
-		$rootdirpath = str_replace('\\\\', '\\', ROOT_DIRECTORY . DIRECTORY_SEPARATOR);
+		$rootdirpath = str_replace('\\\\', '\\', ROOT_DIRECTORY);
 
 		/** Replace all \ with / now */
 		$realfilepath = str_replace('\\', '/', $realfilepath);
@@ -215,6 +218,8 @@ class Deprecated
 
 		if (stripos($realfilepath, $rootdirpath) !== 0 || in_array($filePathParts[0], $unsafeDirectories)) {
 			\App\Log::error(__METHOD__ . '(' . $filepath . ') - Sorry! Attempt to access restricted file. realfilepath: ' . print_r($realfilepath, true));
+			echo($realfilepath . ' 1 ' . $rootdirpath . ' 2 ' . $filepath);
+			die();
 			throw new \Exception\AppException('Sorry! Attempt to access restricted file.');
 		}
 	}
@@ -227,7 +232,7 @@ class Deprecated
 
 		/** Replace all \\ with \ first */
 		$realfilepath = str_replace('\\\\', '\\', $realfilepath);
-		$rootdirpath = str_replace('\\\\', '\\', ROOT_DIRECTORY . DIRECTORY_SEPARATOR);
+		$rootdirpath = str_replace('\\\\', '\\', ROOT_DIRECTORY);
 
 		/** Replace all \ with / now */
 		$realfilepath = str_replace('\\', '/', $realfilepath);
@@ -264,7 +269,7 @@ class Deprecated
 
 		/** Replace all \\ with \ first */
 		$realfilepath = str_replace('\\\\', '\\', $realfilepath);
-		$rootdirpath = str_replace('\\\\', '\\', ROOT_DIRECTORY . DIRECTORY_SEPARATOR);
+		$rootdirpath = str_replace('\\\\', '\\', ROOT_DIRECTORY);
 
 		/** Replace all \ with / now */
 		$realfilepath = str_replace('\\', '/', $realfilepath);

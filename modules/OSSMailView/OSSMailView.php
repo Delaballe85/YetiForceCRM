@@ -5,7 +5,7 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * Contributor(s): YetiForce.com.
  * *********************************************************************************************************************************** */
@@ -154,8 +154,8 @@ class OSSMailView extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -200,7 +200,7 @@ class OSSMailView extends CRMEntity
 	{
 		$current_user = vglobal('current_user');
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('OSSMailView', "detail_view");
@@ -225,8 +225,8 @@ class OSSMailView extends CRMEntity
 		else
 			$query .= " WHERE $where_auto";
 
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		// Security Check for Field Access
 		if ($is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1 && $defaultOrgSharingPermission[\App\Module::getModuleId('OSSMailView')] == 3) {
@@ -301,7 +301,7 @@ class OSSMailView extends CRMEntity
 	 */
 	public function vtlib_handler($moduleName, $eventType)
 	{
-		require_once('include/utils/utils.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/utils.php');
 		$adb = PearDatabase::getInstance();
 		if ($eventType == 'module.postinstall') {
 			\App\Fields\RecordNumber::setNumber($moduleName, 'M_', 1);
@@ -321,9 +321,9 @@ class OSSMailView extends CRMEntity
 		} else if ($eventType == 'module.enabled') {
 			$registerLink = true;
 		} else if ($eventType == 'module.preuninstall') {
-			
+
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
 			$Module = vtlib\Module::getInstance($moduleName);
 			$user_id = Users_Record_Model::getCurrentUserModel()->get('user_name');

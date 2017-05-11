@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com.
  * ********************************************************************************** */
-require_once 'include/runtime/Cache.php';
+require_once ROOT_DIRECTORY . 'include/runtime/Cache.php';
 
 class VTWorkflowEntity
 {

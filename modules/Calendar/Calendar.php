@@ -8,12 +8,12 @@
  * All Rights Reserved.
  * ****************************************************************************** */
 
-require_once('modules/Calendar/CalendarCommon.php');
-require_once('include/utils/CommonUtils.php');
-require_once('include/utils/UserInfoUtil.php');
-require_once('include/database/PearDatabase.php');
-require_once('modules/Calendar/Activity.php');
-require_once('modules/Calendar/Date.php');
+require_once ROOT_DIRECTORY . 'modules/Calendar/CalendarCommon.php';
+require_once ROOT_DIRECTORY . 'include/utils/CommonUtils.php';
+require_once ROOT_DIRECTORY . 'include/utils/UserInfoUtil.php';
+require_once ROOT_DIRECTORY . 'include/database/PearDatabase.php';
+require_once ROOT_DIRECTORY . 'modules/Calendar/Activity.php';
+require_once ROOT_DIRECTORY . 'modules/Calendar/Date.php';
 
 class Calendar
 {
@@ -46,7 +46,7 @@ class Calendar
 	/**
 	 * Function to get calendarview Label
 	 * @param string  $view   - calendarview
-	 * return string  - calendarview Label 
+	 * return string  - calendarview Label
 	 */
 	public function getCalendarView($view)
 	{
@@ -166,7 +166,7 @@ class Layout
 	/**
 	 * Constructor for Layout class
 	 * @param  string   $view - calendarview
-	 * @param  string   $time - time string 
+	 * @param  string   $time - time string
 	 */
 	public function Layout($view, $time)
 	{
@@ -181,7 +181,7 @@ class Layout
 	}
 
 	/**
-	 * Function to get view 
+	 * Function to get view
 	 * return currentview
 	 */
 	public function getView()

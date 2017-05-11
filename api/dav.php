@@ -4,14 +4,17 @@
  * @copyright YetiForce Sp. z o.o.
  * @license YetiForce Public License 2.0 (licenses/License.html or yetiforce.com)
  */
-chdir(__DIR__ . '/../');
-require('include/ConfigUtils.php');
+chdir(__DIR__ . '/../../');
+define('PUBLIC_DIRECTORY', 'public/');
+
+define('ROOT_DIRECTORY', __DIR__ !== DIRECTORY_SEPARATOR ? str_replace('public' . DIRECTORY_SEPARATOR . 'api' . DIRECTORY_SEPARATOR, '', __DIR__ . DIRECTORY_SEPARATOR) : '..' . DIRECTORY_SEPARATOR);
+require(ROOT_DIRECTORY . 'include/ConfigUtils.php');
 if (!in_array('dav', $enabledServices)) {
-	require('include/main/WebUI.php');
+	require(ROOT_DIRECTORY . 'include/main/WebUI.php');
 	$apiLog = new \Exception\NoPermittedToApi();
 	$apiLog->stop('Dav - Service is not active');
 }
-AppConfig::iniSet('error_log', ROOT_DIRECTORY . '/cache/logs/davPhpError.log');
+AppConfig::iniSet('error_log', ROOT_DIRECTORY . 'cache/logs/davPhpError.log');
 
 /* Database */
 $pdo = new PDO('mysql:host=' . $dbconfig['db_server'] . ';dbname=' . $dbconfig['db_name'] . ';charset=utf8', $dbconfig['db_username'], $dbconfig['db_password']);
@@ -26,9 +29,9 @@ set_error_handler('exception_error_handler');
 $enableWebDAV = false;
 
 // Autoloader
-require('libraries/SabreDAV/autoload.php');
+require(ROOT_DIRECTORY . 'libraries/SabreDAV/autoload.php');
 
-// Backends 
+// Backends
 $authBackend = new Yeti\DAV_Auth_Backend_PDO($pdo);
 $principalBackend = new Yeti\DAVACL_PrincipalBackend_PDO($pdo);
 $nodes = [

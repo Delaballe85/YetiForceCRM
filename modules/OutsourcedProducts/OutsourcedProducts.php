@@ -5,10 +5,10 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * *********************************************************************************************************************************** */
-include_once 'modules/Vtiger/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
 
 class OutsourcedProducts extends Vtiger_CRMEntity
 {
@@ -107,7 +107,7 @@ class OutsourcedProducts extends Vtiger_CRMEntity
 	 */
 	public function vtlib_handler($moduleName, $eventType)
 	{
-		require_once('include/utils/utils.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/utils.php');
 		$adb = PearDatabase::getInstance();
 
 		if ($eventType == 'module.postinstall') {
@@ -122,15 +122,15 @@ class OutsourcedProducts extends Vtiger_CRMEntity
 			//Showing Assets module in the related modules in the More Information Tab
 			\App\Fields\RecordNumber::setNumber($moduleName, 'UP', 1);
 		} else if ($eventType == 'module.disabled') {
-			
+
 		} else if ($eventType == 'module.enabled') {
-			
+
 		} else if ($eventType == 'module.preuninstall') {
-			
+
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
-			
+
 		}
 	}
 

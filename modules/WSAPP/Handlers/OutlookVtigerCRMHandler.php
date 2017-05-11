@@ -7,8 +7,8 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  * *********************************************************************************** */
-require_once 'modules/WSAPP/Handlers/vtigerCRMHandler.php';
-require_once 'include/utils/GetUserGroups.php';
+require_once ROOT_DIRECTORY . 'modules/WSAPP/Handlers/vtigerCRMHandler.php';
+require_once ROOT_DIRECTORY . 'include/utils/GetUserGroups.php';
 
 class OutlookVtigerCRMHandler extends vtigerCRMHandler
 {
@@ -76,7 +76,7 @@ class OutlookVtigerCRMHandler extends vtigerCRMHandler
 
 	public function put($recordDetails, $user)
 	{
-		
+
 		$this->user = $user;
 		$recordDetails = $this->syncToNativeFormat($recordDetails);
 		$createdRecords = $recordDetails['created'];

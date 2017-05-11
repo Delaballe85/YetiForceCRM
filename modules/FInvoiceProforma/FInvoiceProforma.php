@@ -9,7 +9,7 @@
  * Contributor(s): YetiForce.com
  * ********************************************************************************** */
 
-include_once 'modules/Vtiger/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
 
 class FInvoiceProforma extends Vtiger_CRMEntity
 {
@@ -91,15 +91,15 @@ class FInvoiceProforma extends Vtiger_CRMEntity
 	{
 		$adb = PearDatabase::getInstance();
 		if ($eventType == 'module.postinstall') {
-			
+
 		} else if ($eventType == 'module.disabled') {
-			
+
 		} else if ($eventType == 'module.preuninstall') {
-			
+
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
-			
+
 		}
 	}
 }

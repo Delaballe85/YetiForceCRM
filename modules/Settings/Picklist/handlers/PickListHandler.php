@@ -37,7 +37,7 @@ class Settings_Picklist_PickListHandler_Handler
 
 		$moduleModel = Vtiger_Module_Model::getInstance($moduleName);
 		$tabId = $moduleModel->getId();
-		//update picklist dependency values 
+		//update picklist dependency values
 		$query = "SELECT id,targetvalues FROM vtiger_picklist_dependency where targetfield=? and tabid=?";
 		$result = $db->pquery($query, array($pickListFieldName, $tabId));
 		$num_rows = $db->num_rows($result);
@@ -94,11 +94,11 @@ class Settings_Picklist_PickListHandler_Handler
 		//update Workflows values
 		$dataReader = (new \App\Db\Query())->select(['workflow_id', 'test'])->from('com_vtiger_workflows')->where([
 				'and',
-					['module_name' => $moduleName],
-					['<>', 'test', ''],
-					['not', ['test' => null]],
-					['<>', 'test', 'null'],
-					['like', 'test', $oldValue]
+				['module_name' => $moduleName],
+				['<>', 'test', ''],
+				['not', ['test' => null]],
+				['<>', 'test', 'null'],
+				['like', 'test', $oldValue]
 			])->createCommand()->query();
 
 		while ($row = $dataReader->read()) {
@@ -135,8 +135,8 @@ class Settings_Picklist_PickListHandler_Handler
 			$taskComponents = explode(':', $task);
 			$classNameWithDoubleQuotes = $taskComponents[2];
 			$className = str_replace('"', '', $classNameWithDoubleQuotes);
-			require_once("modules/com_vtiger_workflow/VTTaskManager.php");
-			require_once 'modules/com_vtiger_workflow/tasks/' . $className . '.php';
+			require_once(ROOT_DIRECTORY . "modules/com_vtiger_workflow/VTTaskManager.php");
+			require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/tasks/' . $className . '.php';
 			$unserializeTask = unserialize($task);
 			if (array_key_exists("field_value_mapping", $unserializeTask)) {
 				$fieldMapping = \App\Json::decode($unserializeTask->field_value_mapping);
@@ -251,11 +251,11 @@ class Settings_Picklist_PickListHandler_Handler
 			//update Workflows values
 			$dataReader = (new \App\Db\Query())->select(['workflow_id', 'test'])->from('com_vtiger_workflows')->where([
 					'and',
-						['module_name' => $moduleName],
-						['<>', 'test', ''],
-						['not', ['test' => null]],
-						['<>', 'test', 'null'],
-						['like', 'test', $value]
+					['module_name' => $moduleName],
+					['<>', 'test', ''],
+					['not', ['test' => null]],
+					['<>', 'test', 'null'],
+					['like', 'test', $value]
 				])->createCommand()->query();
 			while ($row = $dataReader->read()) {
 				$condition = decode_html($row['test']);
@@ -293,8 +293,8 @@ class Settings_Picklist_PickListHandler_Handler
 				$taskComponents = explode(':', $task);
 				$classNameWithDoubleQuotes = $taskComponents[2];
 				$className = str_replace('"', '', $classNameWithDoubleQuotes);
-				require_once("modules/com_vtiger_workflow/VTTaskManager.php");
-				require_once 'modules/com_vtiger_workflow/tasks/' . $className . '.php';
+				require_once(ROOT_DIRECTORY . "modules/com_vtiger_workflow/VTTaskManager.php");
+				require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/tasks/' . $className . '.php';
 				$unserializeTask = unserialize($task);
 				if (array_key_exists("field_value_mapping", $unserializeTask)) {
 					$fieldMapping = \App\Json::decode($unserializeTask->field_value_mapping);

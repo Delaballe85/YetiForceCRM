@@ -67,7 +67,7 @@ class VTEntityData
 
 		$obj->moduleName = 'Users';
 
-		require_once('include/CRMEntity.php');
+		require_once(ROOT_DIRECTORY . 'include/CRMEntity.php');
 		$focus = CRMEntity::getInstance($obj->moduleName);
 
 		$focus->retrieve_entity_info($userId, $obj->moduleName);
@@ -155,7 +155,7 @@ class VTEntityData
 
 	/**
 	 * Check whether the object is stored on the database.
-	 * 
+	 *
 	 * @return True if the object is saved false otherwiser.
 	 */
 	function isSaved()
@@ -165,7 +165,7 @@ class VTEntityData
 
 	/**
 	 * Check wether the obkect is new.
-	 * 
+	 *
 	 * @return True if the object is new, false otherwise.
 	 */
 	function isNew()

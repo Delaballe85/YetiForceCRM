@@ -5,7 +5,7 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * *********************************************************************************************************************************** */
 
@@ -19,7 +19,7 @@ class ApiAddress
 	 */
 	public function vtlib_handler($moduleName, $eventType)
 	{
-		require_once('include/utils/utils.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/utils.php');
 		$adb = PearDatabase::getInstance();
 		$registerLink = false;
 		if ($eventType == 'module.postinstall') {
@@ -35,11 +35,11 @@ class ApiAddress
 		} else if ($eventType == 'module.enabled') {
 
 		} else if ($eventType == 'module.preuninstall') {
-           
+
 		} else if ($eventType == 'module.preupdate') {
 
 		} else if ($eventType == 'module.postupdate') {
-			
+
 		}
 		$displayLabel = 'LBL_API_ADDRESS';
 		if ($registerLink) {

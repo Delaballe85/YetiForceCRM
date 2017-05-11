@@ -5,7 +5,7 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * Contributor(s): YetiForce.com.
  * *********************************************************************************************************************************** */
@@ -147,8 +147,8 @@ class OSSPasswords extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -193,7 +193,7 @@ class OSSPasswords extends CRMEntity
 	{
 		$current_user = vglobal('current_user');
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('OSSPasswords', "detail_view");
@@ -218,8 +218,8 @@ class OSSPasswords extends CRMEntity
 		else
 			$query .= " WHERE $where_auto";
 
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		// Security Check for Field Access
 		if ($is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1 && $defaultOrgSharingPermission[\App\Module::getModuleId('OSSPasswords')] == 3) {
@@ -294,15 +294,15 @@ class OSSPasswords extends CRMEntity
 	 */
 	public function vtlib_handler($moduleName, $eventType)
 	{
-		require_once('include/utils/utils.php');
-		require_once('include/events/include.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/utils.php');
+		require_once(ROOT_DIRECTORY . 'include/events/include.php');
 
 		$db = App\Db::getInstance();
 		$registerLink = false;
 		$addModTracker = false;
 
 		if ($eventType == 'module.postinstall') {
-			
+
 		} else if ($eventType == 'module.disabled') {
 			$registerLink = false;
 			App\EventHandler::setInActive('OSSPasswords_Secure_Handler');
@@ -311,14 +311,14 @@ class OSSPasswords extends CRMEntity
 			App\EventHandler::setActive('OSSPasswords_Secure_Handler');
 		} else if ($eventType == 'module.preuninstall') {
 			\App\Log::trace('Before starting uninstall script...');
-			require_once( 'modules/Settings/' . $moduleName . '/views/uninstall.php' );
+			require_once( ROOT_DIRECTORY . 'modules/Settings/' . $moduleName . '/views/uninstall.php' );
 			\App\Log::trace('After uninstall script.');
 
 			header('Location: index.php?module=Vtiger&parent=Settings&view=Index');
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
-			
+
 		}
 
 		$displayLabel = 'OSSPassword Configuration';

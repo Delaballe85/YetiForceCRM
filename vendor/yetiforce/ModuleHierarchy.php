@@ -18,7 +18,7 @@ class ModuleHierarchy
 		if (isset(static::$hierarchy)) {
 			return true;
 		}
-		static::$hierarchy = require('user_privileges/moduleHierarchy.php');
+		static::$hierarchy = require(ROOT_DIRECTORY . 'user_privileges/moduleHierarchy.php');
 		foreach (static::$hierarchy['modulesHierarchy'] as $module => $details) {
 			if (Module::isModuleActive($module) && Privilege::isPermitted($module)) {
 				static::$modulesByLevels[$details['level']][$module] = $details;
@@ -41,7 +41,7 @@ class ModuleHierarchy
 	public static function getModulesMap1M($moduleName)
 	{
 		static::init();
-		if (isset(static::$hierarchy['modulesMap1M'][$moduleName])) { 
+		if (isset(static::$hierarchy['modulesMap1M'][$moduleName])) {
 			return static::$hierarchy['modulesMap1M'][$moduleName];
 		}
 		return false;

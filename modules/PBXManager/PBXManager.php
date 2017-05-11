@@ -8,8 +8,8 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com.
  * *********************************************************************************** */
-require 'include/events/include.php';
-require_once 'include/utils/utils.php';
+require ROOT_DIRECTORY . 'include/events/include.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
 
 class PBXManager extends CRMEntity
 {
@@ -110,7 +110,7 @@ class PBXManager extends CRMEntity
 	}
 
 	/**
-	 * To add a phone extension field in user preferences page 
+	 * To add a phone extension field in user preferences page
 	 */
 	public function addUserExtensionField()
 	{
@@ -132,7 +132,7 @@ class PBXManager extends CRMEntity
 	}
 
 	/**
-	 * To register phone lookup events 
+	 * To register phone lookup events
 	 */
 	public function registerLookupEvents()
 	{
@@ -173,7 +173,7 @@ class PBXManager extends CRMEntity
 	}
 
 	/**
-	 * To add a link in vtiger_links which is to load our PBXManagerJS.js 
+	 * To add a link in vtiger_links which is to load our PBXManagerJS.js
 	 */
 	public function addLinksForPBXManager()
 	{
@@ -280,12 +280,12 @@ class PBXManager extends CRMEntity
 		$moduleInstance = $module->getInstance('PBXManager');
 
 		$moduleInstance->disableTools('ReceiveIncomingcalls');
-		$adb->pquery('DELETE FROM vtiger_actionmapping 
+		$adb->pquery('DELETE FROM vtiger_actionmapping
                      WHERE actionname=?', array('ReceiveIncomingCalls'));
 		\App\Log::info('ReceiveIncomingcalls ActionName Removed');
 
 		$moduleInstance->disableTools('MakeOutgoingCalls');
-		$adb->pquery('DELETE FROM vtiger_actionmapping 
+		$adb->pquery('DELETE FROM vtiger_actionmapping
                       WHERE actionname=?', array('MakeOutgoingCalls'));
 		\App\Log::info('MakeOutgoingCalls ActionName Removed');
 	}

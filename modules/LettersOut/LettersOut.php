@@ -155,8 +155,8 @@ class LettersOut extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -201,7 +201,7 @@ class LettersOut extends CRMEntity
 	{
 		$current_user = vglobal('current_user');
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('LettersOut', "detail_view");
@@ -315,7 +315,7 @@ class LettersOut extends CRMEntity
 			\App\Fields\RecordNumber::setNumber($modulename, 'LI', '1');
 			$modcommentsModuleInstance = vtlib\Module::getInstance('ModComments');
 			if ($modcommentsModuleInstance && file_exists('modules/ModComments/ModComments.php')) {
-				include_once 'modules/ModComments/ModComments.php';
+				include_once ROOT_DIRECTORY . 'modules/ModComments/ModComments.php';
 				if (class_exists('ModComments'))
 					ModComments::addWidgetTo(array('LettersOut'));
 			}
@@ -328,15 +328,15 @@ class LettersOut extends CRMEntity
 			$adb->pquery('UPDATE vtiger_field SET summaryfield=1 WHERE tablename=? && columnname=?', array('vtiger_lettersout', 'date_adoption'));
 			$adb->pquery('UPDATE vtiger_field SET summaryfield=1 WHERE tablename=? && columnname=?', array('vtiger_lettersout', 'relatedid'));
 		} else if ($event_type == 'module.disabled') {
-			
+
 		} else if ($event_type == 'module.enabled') {
-			
+
 		} else if ($event_type == 'module.preuninstall') {
-			
+
 		} else if ($event_type == 'module.preupdate') {
-			
+
 		} else if ($event_type == 'module.postupdate') {
-			
+
 		}
 	}
 }

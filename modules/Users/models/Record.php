@@ -779,11 +779,11 @@ class Users_Record_Model extends Vtiger_Record_Model
 		$db->createCommand()->update('vtiger_modcomments', ['userid' => $newOwnerId], ['userid' => $userId])->execute();
 		$db->createCommand()->delete('vtiger_users', ['id' => $userId])->execute();
 		deleteUserRelatedSharingRules($userId);
-		$fileName = "user_privileges/sharing_privileges_{$userId}.php";
+		$fileName = ROOT_DIRECTORY . "user_privileges/sharing_privileges_{$userId}.php";
 		if (file_exists($fileName)) {
 			unlink($fileName);
 		}
-		$fileName = "user_privileges/user_privileges_{$userId}.php";
+		$fileName = ROOT_DIRECTORY . "user_privileges/user_privileges_{$userId}.php";
 		if (file_exists($fileName)) {
 			unlink($fileName);
 		}
@@ -808,7 +808,7 @@ class Users_Record_Model extends Vtiger_Record_Model
 		if ($this->has('locks')) {
 			return $this->get('locks');
 		}
-		require('user_privileges/locks.php');
+		require(ROOT_DIRECTORY . 'user_privileges/locks.php');
 		if ($this->getId() && key_exists($this->getId(), $locks)) {
 			$this->set('locks', $locks[$this->getId()]);
 			return $locks[$this->getId()];

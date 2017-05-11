@@ -89,7 +89,7 @@ class SMSNotifier extends SMSNotifierBase
 
 		// Calculate the related module access (similar to getRelatedList API in DetailViewUtils.php)
 		if ($result && $adb->num_rows($result)) {
-			require('user_privileges/user_privileges_' . $current_user->id . '.php');
+			require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
 			while ($resultrow = $adb->fetch_array($result)) {
 				$accessCheck = false;
 				$relatedTabId = \App\Module::getModuleId($resultrow['setype']);
@@ -134,7 +134,7 @@ class SMSNotifier extends SMSNotifierBase
 		if ($type == 'U') {
 			$userIds = array($assignedtoid);
 		} else {
-			require_once('include/utils/GetGroupUsers.php');
+			require_once(ROOT_DIRECTORY . 'include/utils/GetGroupUsers.php');
 			$getGroupObj = new GetGroupUsers();
 			$getGroupObj->getAllUsersInGroup($assignedtoid);
 			$userIds = $getGroupObj->group_users;
@@ -222,7 +222,7 @@ class SMSNotifier extends SMSNotifierBase
 
 	static function fireSendSMS($message, $tonumbers)
 	{
-		
+
 		$provider = SMSNotifierManager::getActiveProviderInstance();
 		if ($provider) {
 			return $provider->send($message, $tonumbers);

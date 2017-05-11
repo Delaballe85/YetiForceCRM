@@ -12,7 +12,7 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ****************************************************************************** */
-require_once 'include/runtime/Globals.php';
+require_once ROOT_DIRECTORY . 'include/runtime/Globals.php';
 
 class PearDatabase
 {
@@ -74,9 +74,9 @@ class PearDatabase
 		}
 		$config = AppConfig::main('dbconfig');
 		if ($config === false) {
-			include('config/config.inc.php');
-			if (file_exists('config/config_override.php')) {
-				include 'config/config_override.php';
+			include(ROOT_DIRECTORY . 'config/config.inc.php');
+			if (file_exists(ROOT_DIRECTORY . 'config/config_override.php')) {
+				include ROOT_DIRECTORY . 'config/config_override.php';
 			}
 			$config = $dbconfig;
 		}
@@ -95,7 +95,7 @@ class PearDatabase
 
 	public function connect()
 	{
-		// Set DSN 
+		// Set DSN
 		$dsn = $this->dbType . ':host=' . $this->dbHostName . ';dbname=' . $this->dbName . ';port=' . $this->port;
 
 		// Set options

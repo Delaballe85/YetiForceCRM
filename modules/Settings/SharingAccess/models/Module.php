@@ -5,7 +5,7 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * *********************************************************************************************************************************** */
 
@@ -123,8 +123,8 @@ class Settings_SharingAccess_Module_Model extends Vtiger_Module_Model
 	{
 		$moduleModels = [];
 		$query = (new \App\Db\Query())->from('vtiger_def_org_share')
-				->innerJoin('vtiger_tab', 'vtiger_tab.tabid = vtiger_def_org_share.tabid')
-				->where(['vtiger_tab.presence' => [0, 2]]);
+			->innerJoin('vtiger_tab', 'vtiger_tab.tabid = vtiger_def_org_share.tabid')
+			->where(['vtiger_tab.presence' => [0, 2]]);
 		if ($editable) {
 			$query->andWhere(['editstatus' => self::EDITABLE]);
 		}
@@ -161,7 +161,7 @@ class Settings_SharingAccess_Module_Model extends Vtiger_Module_Model
 		set_time_limit($phpMaxExecutionTime);
 		$db = PearDatabase::getInstance();
 
-		require_once('modules/Users/CreateUserPrivilegeFile.php');
+		require_once(ROOT_DIRECTORY . 'modules/Users/CreateUserPrivilegeFile.php');
 		$result = $db->pquery('SELECT id FROM vtiger_users WHERE deleted = ?', [0]);
 
 		while (($id = $db->getSingleValue($result)) !== false) {

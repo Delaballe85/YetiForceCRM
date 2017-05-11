@@ -7,13 +7,13 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  * ********************************************************************************** */
-require_once 'include/Webservices/Utils.php';
-require_once("modules/Users/Users.php");
-require_once("include/Webservices/VtigerCRMObject.php");
-require_once("include/Webservices/VtigerCRMObjectMeta.php");
-require_once("include/Webservices/DataTransform.php");
-require_once("include/Webservices/WebServiceError.php");
-require_once 'include/utils/utils.php';
-require_once 'include/Webservices/ModuleTypes.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Utils.php';
+require_once ROOT_DIRECTORY . 'modules/Users/Users.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerCRMObject.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerCRMObjectMeta.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/DataTransform.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/WebServiceError.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/ModuleTypes.php';
 
 ?>

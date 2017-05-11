@@ -7,7 +7,7 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  * **************************************************************************** */
-require_once("include/events/SqlResultIterator.php");
+require_once ROOT_DIRECTORY . 'include/events/SqlResultIterator.php';
 
 class VTExpressionsManager
 {

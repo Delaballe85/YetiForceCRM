@@ -23,7 +23,7 @@ class Documents_Relation_Model extends Vtiger_Relation_Model
 
 	public function deleteRelation($relatedRecordId, $sourceRecordId)
 	{
-		include_once('modules/ModTracker/ModTracker.php');
+		include_once(ROOT_DIRECTORY . 'modules/ModTracker/ModTracker.php');
 		$sourceModule = $this->getParentModuleModel();
 		$destinationModuleName = $sourceModule->get('name');
 		$sourceModuleName = $this->getRelationModuleModel()->get('name');

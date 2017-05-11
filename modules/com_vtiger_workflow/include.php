@@ -7,8 +7,8 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  * ********************************************************************************** */
-require_once 'include/events/SqlResultIterator.php';
-require_once 'VTWorkflowManager.php';
-require_once 'VTTaskManager.php';
-require_once 'VTWorkflowTemplateManager.php';
-require_once 'VTTaskQueue.php';
+require_once ROOT_DIRECTORY . 'include/events/SqlResultIterator.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTWorkflowManager.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTTaskManager.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTWorkflowTemplateManager.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTTaskQueue.php';

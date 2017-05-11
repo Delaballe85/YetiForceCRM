@@ -148,7 +148,7 @@ class Documents extends CRMEntity
 		$current_user = vglobal('current_user');
 		\App\Log::trace('Entering create_export_query(' . $where . ') method ...');
 
-		include('include/utils/ExportUtils.php');
+		include(ROOT_DIRECTORY . 'include/utils/ExportUtils.php');
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('Documents', 'detail_view');
 		$fields_list = getFieldsListFromQuery($sql);
@@ -297,10 +297,10 @@ class Documents extends CRMEntity
 	{
 		$adb = PearDatabase::getInstance();
 		$result = $adb->pquery('SELECT `tree`,`name` FROM
-				`vtiger_trees_templates_data` 
-			INNER JOIN `vtiger_field` 
-				ON `vtiger_trees_templates_data`.`templateid` = `vtiger_field`.`fieldparams` 
-			WHERE `vtiger_field`.`columnname` = ? 
+				`vtiger_trees_templates_data`
+			INNER JOIN `vtiger_field`
+				ON `vtiger_trees_templates_data`.`templateid` = `vtiger_field`.`fieldparams`
+			WHERE `vtiger_field`.`columnname` = ?
 				AND `vtiger_field`.`tablename` = ?
 				AND `vtiger_trees_templates_data`.`name` = ?;', array('folderid', 'vtiger_notes', 'Default'));
 		return $adb->query_result($result, 0, 'tree');

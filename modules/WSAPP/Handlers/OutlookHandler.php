@@ -7,10 +7,10 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  * *********************************************************************************** */
-require_once 'include/fields/DateTimeField.php';
-require_once 'modules/WSAPP/SyncServer.php';
-require_once 'modules/WSAPP/Handlers/SyncHandler.php';
-require_once 'modules/WSAPP/OutlookSyncServer.php';
+require_once ROOT_DIRECTORY . 'include/fields/DateTimeField.php';
+require_once ROOT_DIRECTORY . 'modules/WSAPP/SyncServer.php';
+require_once ROOT_DIRECTORY . 'modules/WSAPP/Handlers/SyncHandler.php';
+require_once ROOT_DIRECTORY . 'modules/WSAPP/OutlookSyncServer.php';
 
 Class OutlookHandler extends SyncHandler
 {

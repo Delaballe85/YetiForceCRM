@@ -1,11 +1,11 @@
 <?php
 /**
- * 
+ *
  * @package YetiForce.Cron
  * @license licenses/License.html
  * @author Maciej Stencel <m.stencel@yetiforce.com>
  */
-require_once('include/main/WebUI.php');
+require_once(ROOT_DIRECTORY . 'include/main/WebUI.php');
 \App\Log::trace('Start CRON:' . __FILE__);
 
 $moduleModel = Settings_CurrencyUpdate_Module_Model::getCleanInstance();

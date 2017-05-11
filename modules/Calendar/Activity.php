@@ -17,10 +17,10 @@
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- * ****************************************************************************** 
+ * ******************************************************************************
  * Contributor(s): YetiForce.com
  */
-require_once('modules/Calendar/CalendarCommon.php');
+require_once ROOT_DIRECTORY . 'modules/Calendar/CalendarCommon.php';
 
 // Task is used to store customer information.
 class Activity extends CRMEntity
@@ -295,8 +295,8 @@ class Activity extends CRMEntity
 
 	public function getNonAdminAccessControlQuery($module, $user, $scope = '')
 	{
-		require('user_privileges/user_privileges_' . $user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $user->id . '.php');
 		$query = ' ';
 		$tabId = \App\Module::getModuleId($module);
 		if ($is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1 && $defaultOrgSharingPermission[$tabId] == 3) {

@@ -27,7 +27,7 @@ class ConfigReader
 			$this->properties = self::$propertiesCache[$path];
 			return;
 		}
-		require $path;
+		require ROOT_DIRECTORY . $path;
 		$this->properties = $$name;
 		self::$propertiesCache[$path] = $this->properties;
 	}

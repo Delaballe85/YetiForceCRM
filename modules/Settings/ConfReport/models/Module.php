@@ -5,7 +5,7 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * *********************************************************************************************************************************** */
 
@@ -301,8 +301,8 @@ class Settings_ConfReport_Module_Model extends Settings_Vtiger_Module_Model
 			'LBL_PHP_SAPI' => PHP_SAPI,
 			'LBL_PHP_SAPI' => php_uname()
 		];
-		if (file_exists('user_privileges/cron.php')) {
-			include 'user_privileges/cron.php';
+		if (file_exists(ROOT_DIRECTORY . 'user_privileges/cron.php')) {
+			include ROOT_DIRECTORY . 'user_privileges/cron.php';
 			$params['LBL_CRON_PHP'] = $vphp;
 			$params['LBL_CRON_PHPINI'] = $ini;
 			$params['LBL_CRON_LOG_FILE'] = $log;
@@ -403,7 +403,7 @@ class Settings_ConfReport_Module_Model extends Settings_Vtiger_Module_Model
 	 */
 	public static function testSpeed()
 	{
-		$dir = ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'speed' . DIRECTORY_SEPARATOR;
+		$dir = ROOT_DIRECTORY . 'cache' . DIRECTORY_SEPARATOR . 'speed' . DIRECTORY_SEPARATOR;
 		if (!is_dir($dir)) {
 			mkdir($dir, 0777);
 		}

@@ -316,7 +316,7 @@ function vtlib_getPicklistValues($columnname)
  */
 function vtlib_isWriteable($path)
 {
-	$path = ROOT_DIRECTORY . DIRECTORY_SEPARATOR . $path;
+	$path = ROOT_DIRECTORY . $path;
 	if (is_dir($path)) {
 		return vtlib_isDirWriteable($path);
 	} else {

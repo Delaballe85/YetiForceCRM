@@ -9,14 +9,14 @@
  * Contributor(s): YetiForce.com
  * *********************************************************************************** */
 
-include_once 'include/Webservices/Query.php';
-include_once 'include/Webservices/RelatedTypes.php';
+include_once ROOT_DIRECTORY . 'include/Webservices/Query.php';
+include_once ROOT_DIRECTORY . 'include/Webservices/RelatedTypes.php';
 
 function vtws_query_related($query, $id, $relatedLabel, $user, $filterClause = null)
 {
 
 	$adb = PearDatabase::getInstance();
-	
+
 	$webserviceObject = VtigerWebserviceObject::fromId($adb, $id);
 	$handlerPath = $webserviceObject->getHandlerPath();
 	$handlerClass = $webserviceObject->getHandlerClass();
@@ -47,7 +47,7 @@ function vtws_query_related($query, $id, $relatedLabel, $user, $filterClause = n
 
 	vtws_preserveGlobal('currentModule', $entityName);
 
-	// Fetch related record IDs - so we can further retrieve complete information using vtws_query 
+	// Fetch related record IDs - so we can further retrieve complete information using vtws_query
 	$relatedWebserviceObject = VtigerWebserviceObject::fromName($adb, $relatedType);
 	$relatedHandlerPath = $relatedWebserviceObject->getHandlerPath();
 	$relatedHandlerClass = $relatedWebserviceObject->getHandlerClass();
@@ -71,7 +71,7 @@ function vtws_query_related($query, $id, $relatedLabel, $user, $filterClause = n
 		if (!empty($filterClause)) {
 			$query .= " " . $filterClause;
 		}
-		$query.=";";
+		$query .= ";";
 		$relatedRecords = vtws_query($query, $user);
 	}
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  * @package YetiForce.ServiceContracts
  * @license licenses/License.html
  * @author Mariusz Krzaczkowski <m.krzaczkowski@yetiforce.com>
@@ -162,8 +162,8 @@ class ServiceContracts extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -253,7 +253,7 @@ class ServiceContracts extends CRMEntity
 	{
 		$current_user = Users_Privileges_Model::getCurrentUserPrivilegesModel();
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('ServiceContracts', "detail_view");
@@ -355,7 +355,7 @@ class ServiceContracts extends CRMEntity
 	public function vtlib_handler($moduleName, $eventType)
 	{
 
-		require_once('include/utils/utils.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/utils.php');
 		$adb = PearDatabase::getInstance();
 
 		if ($eventType == 'module.postinstall') {
@@ -382,11 +382,11 @@ class ServiceContracts extends CRMEntity
 		} else if ($eventType == 'module.enabled') {
 			App\EventHandler::setActive('ServiceContracts_ServiceContractsHandler_Handler');
 		} else if ($eventType == 'module.preuninstall') {
-			
+
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
-			
+
 		}
 	}
 

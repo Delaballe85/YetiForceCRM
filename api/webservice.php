@@ -1,10 +1,11 @@
 <?php
 /* {[The file is published on the basis of YetiForce Public License that can be found in the following directory: licenses/License.html]} */
 chdir(__DIR__ . '/../');
+define('PUBLIC_DIRECTORY', 'public/');
 
-require_once 'include/main/WebUI.php';
+require_once ROOT_DIRECTORY . 'include/main/WebUI.php';
 
-AppConfig::iniSet('error_log', ROOT_DIRECTORY . '/cache/logs/webservice.log');
+AppConfig::iniSet('error_log', ROOT_DIRECTORY . 'cache/logs/webservice.log');
 define('REQUEST_MODE', 'API');
 
 try {

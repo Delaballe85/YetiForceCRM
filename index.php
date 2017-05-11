@@ -12,10 +12,11 @@
 $startTime = microtime(true);
 
 define('REQUEST_MODE', 'WebUI');
-define('ROOT_DIRECTORY', __DIR__ !== DIRECTORY_SEPARATOR ? __DIR__ : '');
+define('ROOT_DIRECTORY', __DIR__ !== DIRECTORY_SEPARATOR ? __DIR__ . DIRECTORY_SEPARATOR : '' . DIRECTORY_SEPARATOR);
+define('PUBLIC_DIRECTORY', 'public/');
 
-require 'include/RequirementsValidation.php';
-require 'include/main/WebUI.php';
+require ROOT_DIRECTORY . 'include/RequirementsValidation.php';
+require ROOT_DIRECTORY . 'include/main/WebUI.php';
 
 $webUI = new Vtiger_WebUI();
 $webUI->process(\App\Request::init());

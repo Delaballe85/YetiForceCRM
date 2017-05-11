@@ -8,11 +8,11 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ********************************************************************************** */
-require_once 'vendor/yii/Yii.php';
-require_once 'include/ConfigUtils.php';
-require_once 'include/utils/utils.php';
-require_once 'include/utils/CommonUtils.php';
-require_once 'include/Loader.php';
+require_once ROOT_DIRECTORY . 'vendor/yii/Yii.php';
+require_once ROOT_DIRECTORY . 'include/ConfigUtils.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/utils/CommonUtils.php';
+require_once ROOT_DIRECTORY . 'include/Loader.php';
 vimport('include.runtime.EntryPoint');
 App\Debuger::init();
 App\Cache::init();
@@ -126,8 +126,8 @@ class Vtiger_WebUI extends Vtiger_EntryPoint
 		// Better place this here as session get initiated
 		//skipping the csrf checking for the forgot(reset) password
 		if (AppConfig::main('csrfProtection') && $request->get('mode') !== 'reset' && $request->get('action') !== 'Login' && AppConfig::main('systemMode') !== 'demo') {
-			require_once('config/csrf_config.php');
-			require_once('libraries/csrf-magic/csrf-magic.php');
+			require_once(ROOT_DIRECTORY . 'config/csrf_config.php');
+			require_once(ROOT_DIRECTORY . 'libraries/csrf-magic/csrf-magic.php');
 		}
 		// common utils api called, depend on this variable right now
 		$currentUser = $this->getLogin();
@@ -228,11 +228,11 @@ class Vtiger_WebUI extends Vtiger_EntryPoint
 			}
 			\vtlib\Functions::throwNewException($e, false, $tpl);
 			if (AppConfig::debug('DISPLAY_DEBUG_BACKTRACE') && !$request->isAjax()) {
-				echo '<pre>' . str_replace(ROOT_DIRECTORY . DIRECTORY_SEPARATOR, '', $e->getTraceAsString()) . '</pre>';
+				echo '<pre>' . str_replace(ROOT_DIRECTORY, '', $e->getTraceAsString()) . '</pre>';
 				$response = false;
 			}
 			if (AppConfig::main('systemMode') === 'test') {
-				file_put_contents('cache/logs/request.log', print_r($request->getAll(), true));
+				file_put_contents(ROOT_DIRECTORY . 'cache/logs/request.log', print_r($request->getAll(), true));
 				throw $e;
 			}
 		}
@@ -248,7 +248,7 @@ if (AppConfig::debug('EXCEPTION_ERROR_HANDLER')) {
 	{
 		$msg = $errno . ': ' . $errstr . ' in ' . $errfile . ', line ' . $errline;
 		if (\AppConfig::debug('EXCEPTION_ERROR_TO_FILE')) {
-			$file = 'cache/logs/errors.log';
+			$file = ROOT_DIRECTORY . 'cache/logs/errors.log';
 			$content = print_r($msg, true);
 			$content .= PHP_EOL . \App\Debuger::getBacktrace();
 			file_put_contents($file, $content . PHP_EOL, FILE_APPEND);

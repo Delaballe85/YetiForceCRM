@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * ******************************************************************************** */
 
-require_once 'include/events/SqlResultIterator.php';
+require_once ROOT_DIRECTORY . 'include/events/SqlResultIterator.php';
 
 /**
  * Description of EmailTemplateUtils
@@ -121,7 +121,7 @@ class EmailTemplate
 				$moduleTableIndexList = $meta->getEntityTableIndexList();
 				foreach ($tableList as $index => $tableName) {
 					if ($tableName != $tableList[0]) {
-						$sql .=' INNER JOIN ' . $tableName . ' ON ' . $tableList[0] . '.' .
+						$sql .= ' INNER JOIN ' . $tableName . ' ON ' . $tableList[0] . '.' .
 							$moduleTableIndexList[$tableList[0]] . '=' . $tableName . '.' .
 							$moduleTableIndexList[$tableName];
 					}
@@ -129,7 +129,7 @@ class EmailTemplate
 				//If module is Leads and if you are not selected any leads fields then query failure is happening.
 				//By default we are checking where condition on base table.
 				if ($module == 'Leads' && !in_array('vtiger_leaddetails', $tableList)) {
-					$sql .=' INNER JOIN vtiger_leaddetails ON vtiger_leaddetails.leadid = vtiger_crmentity.crmid';
+					$sql .= ' INNER JOIN vtiger_leaddetails ON vtiger_leaddetails.leadid = vtiger_crmentity.crmid';
 				}
 
 				$sql .= ' WHERE';
@@ -238,7 +238,7 @@ class EmailTemplate
 
 	public function isModuleActive($module)
 	{
-		include_once 'include/utils/VtlibUtils.php';
+		include_once ROOT_DIRECTORY . 'include/utils/VtlibUtils.php';
 		if (\App\Module::isModuleActive($module) && ((isPermitted($module, 'EditView') == 'yes'))) {
 			return true;
 		}

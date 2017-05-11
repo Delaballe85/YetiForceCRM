@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once("libraries/HTTP_Session/Session.php");
+require_once ROOT_DIRECTORY . 'libraries/HTTP_Session/Session.php';
 // Later may we can move this to config file.
 
 global $maxWebServiceSessionLifeSpan, $maxWebServiceSessionIdleTime;
@@ -37,10 +37,10 @@ class SessionManager
 		$this->idleLife = $now + $maxWebServiceSessionIdleTime;
 
 		HTTP_Session::useCookies(false); //disable cookie usage. may this could be moved out constructor?
-		// only first invocation of following method, which is setExpire 
+		// only first invocation of following method, which is setExpire
 		//have an effect and any further invocation will be have no effect.
 		HTTP_Session::setExpire($this->maxLife);
-		// this method replaces the new with old time if second params is true 
+		// this method replaces the new with old time if second params is true
 		//otherwise it subtracts the time from previous time
 		HTTP_Session::setIdle($this->idleLife, true);
 	}

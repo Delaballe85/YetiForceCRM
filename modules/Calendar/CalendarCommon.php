@@ -78,7 +78,7 @@ function getActivityDetails($description, $user_id, $from = '')
 
 	$currentUser = vglobal('current_user');
 	$adb = PearDatabase::getInstance();
-	require_once 'include/utils/utils.php';
+	require_once ROOT_DIRECTORY . 'include/utils/utils.php';
 	$current_language = vglobal('current_language');
 	$mod_strings = \vtlib\Deprecated::getModuleTranslationStrings($current_language, 'Calendar');
 	\App\Log::trace("Entering getActivityDetails(" . $description . ") method ...");
@@ -138,7 +138,7 @@ function twoDigit($no)
 // User Select Customization
 /**
  * Function returns the id of the User selected by current user in the picklist of the ListView or Calendar view of Current User
- * return String -  Id of the user that the current user has selected 
+ * return String -  Id of the user that the current user has selected
  */
 function calendarview_getSelectedUserId()
 {

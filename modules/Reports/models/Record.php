@@ -10,8 +10,8 @@
  * *********************************************************************************** */
 vimport('~modules/Reports/Reports.php');
 vimport('~modules/Reports/ReportRun.php');
-require_once('modules/Reports/ReportUtils.php');
-require_once('Report.php');
+require_once(ROOT_DIRECTORY . 'modules/Reports/ReportUtils.php');
+require_once(ROOT_DIRECTORY . 'Report.php');
 
 class Reports_Record_Model extends Vtiger_Record_Model
 {
@@ -756,7 +756,7 @@ class Reports_Record_Model extends Vtiger_Record_Model
 		$advanceFilterSql = $this->getAdvancedFilterSQL();
 		$tmpDir = vglobal('tmp_dir');
 
-		$tempFileName = tempnam(ROOT_DIRECTORY . DIRECTORY_SEPARATOR . $tmpDir, 'xls');
+		$tempFileName = tempnam(ROOT_DIRECTORY . $tmpDir, 'xls');
 		$fileName = decode_html($this->getName()) . '.xls';
 		$reportRun->writeReportToExcelFile($tempFileName, $advanceFilterSql);
 
@@ -783,7 +783,7 @@ class Reports_Record_Model extends Vtiger_Record_Model
 		$advanceFilterSql = $this->getAdvancedFilterSQL();
 		$tmpDir = vglobal('tmp_dir');
 
-		$tempFileName = tempnam(ROOT_DIRECTORY . DIRECTORY_SEPARATOR . $tmpDir, 'csv');
+		$tempFileName = tempnam(ROOT_DIRECTORY . $tmpDir, 'csv');
 		$reportRun->writeReportToCSVFile($tempFileName, $advanceFilterSql);
 		$fileName = decode_html($this->getName()) . '.csv';
 

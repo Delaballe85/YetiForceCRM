@@ -154,7 +154,7 @@ class VTJsonCondition
 				$value = $recordModel->get($value);
 			}
 		} elseif ($expressionType === 'expression') {
-			require_once 'modules/com_vtiger_workflow/expression_engine/include.php';
+			require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/expression_engine/include.php';
 			$parser = new VTExpressionParser(new VTExpressionSpaceFilter(new VTExpressionTokenizer($value)));
 			$expression = $parser->expression();
 			$exprEvaluater = new VTFieldExpressionEvaluater($expression);
@@ -188,7 +188,7 @@ class VTJsonCondition
 					}
 					break;
 				case 'time':
-					$value = $value . ':00'; // time fields will not have seconds appended to it, so we are adding 
+					$value = $value . ':00'; // time fields will not have seconds appended to it, so we are adding
 					break;
 				case 'multiReferenceValue':
 					$value = Vtiger_MultiReferenceValue_UIType::COMMA . $value . Vtiger_MultiReferenceValue_UIType::COMMA;
@@ -203,7 +203,7 @@ class VTJsonCondition
 					break;
 				case 'owner':
 					if ($condition === 'is' || $condition === 'is not') {
-						//To avoid again checking whether it is user or not 
+						//To avoid again checking whether it is user or not
 						if (strpos($value, ',') !== false) {
 							$value = explode(',', $value);
 						} elseif ($value) {

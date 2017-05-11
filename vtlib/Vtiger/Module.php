@@ -249,7 +249,7 @@ class Module extends ModuleBasic
 			$modulename = 'Activity';
 
 		$instance = false;
-		$filepath = "modules/$modulename/$modulename.php";
+		$filepath = ROOT_DIRECTORY . "modules/$modulename/$modulename.php";
 		if (Utils::checkFileAccessForInclusion($filepath, false)) {
 			Deprecated::checkFileAccessForInclusion($filepath);
 			include_once($filepath);

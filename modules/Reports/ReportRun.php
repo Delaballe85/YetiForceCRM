@@ -14,9 +14,9 @@ global $theme;
 
 $theme_path = "themes/" . $theme . "/";
 $image_path = $theme_path . "images/";
-require_once('modules/Reports/Reports.php');
-require_once 'modules/Reports/ReportUtils.php';
-require_once('modules/Vtiger/helpers/Util.php');
+require_once ROOT_DIRECTORY . 'modules/Reports/Reports.php';
+require_once ROOT_DIRECTORY . 'modules/Reports/ReportUtils.php';
+require_once ROOT_DIRECTORY . 'modules/Vtiger/helpers/Util.php';
 
 /*
  * Helper class to determine the associative dependency between tables.
@@ -314,7 +314,7 @@ class ReportRun extends CRMEntity
 			list($module, $field) = explode('__', $module_field, 2);
 			$inventory_fields = array('serviceid');
 			$inventory_modules = getInventoryModules();
-			require('user_privileges/user_privileges_' . $current_user->id . '.php');
+			require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
 			if (sizeof($permitted_fields[$module]) == 0 && $is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1) {
 				$permitted_fields[$module] = $this->getaccesfield($module);
 			}
@@ -1770,8 +1770,8 @@ class ReportRun extends CRMEntity
 	 */
 	public function getReportsNonAdminAccessControlQuery($module, $user, $scope = '')
 	{
-		require('user_privileges/user_privileges_' . $user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $user->id . '.php');
 		$query = ' ';
 		$tabId = \App\Module::getModuleId($module);
 		if ($is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1 && $defaultOrgSharingPermission[$tabId] == 3) {
@@ -2365,7 +2365,7 @@ class ReportRun extends CRMEntity
 		$current_user = Users_Privileges_Model::getCurrentUserPrivilegesModel();
 		global $modules;
 		global $mod_strings;
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
 		$modules_selected = array();
 		$modules_selected[] = $this->primarymodule;
 		if (!empty($this->secondarymodule)) {
@@ -3404,7 +3404,7 @@ class ReportRun extends CRMEntity
 
 	public function writeReportToExcelFile($fileName, $filterlist = '')
 	{
-		require_once("libraries/PHPExcel/PHPExcel.php");
+		require_once(ROOT_DIRECTORY . "libraries/PHPExcel/PHPExcel.php");
 		$workbook = new PHPExcel();
 		$worksheet = $workbook->setActiveSheetIndex(0);
 		$reportData = $this->GenerateReport("PDF", $filterlist);

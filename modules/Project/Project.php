@@ -162,8 +162,8 @@ class Project extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -208,7 +208,7 @@ class Project extends CRMEntity
 	{
 		$current_user = vglobal('current_user');
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('Project', "detail_view");
@@ -340,20 +340,20 @@ class Project extends CRMEntity
 
 			$modcommentsModuleInstance = vtlib\Module::getInstance('ModComments');
 			if ($modcommentsModuleInstance && file_exists('modules/ModComments/ModComments.php')) {
-				include_once 'modules/ModComments/ModComments.php';
+				include_once ROOT_DIRECTORY . 'modules/ModComments/ModComments.php';
 				if (class_exists('ModComments'))
 					ModComments::addWidgetTo(array('Project'));
 			}
 
 			\App\Fields\RecordNumber::setNumber($modulename, 'PROJ', 1);
 		} else if ($event_type == 'module.disabled') {
-			
+
 		} else if ($event_type == 'module.enabled') {
-			
+
 		} else if ($event_type == 'module.preuninstall') {
-			
+
 		} else if ($event_type == 'module.preupdate') {
-			
+
 		} else if ($event_type == 'module.postupdate') {
 			$adb = PearDatabase::getInstance();
 
@@ -363,7 +363,7 @@ class Project extends CRMEntity
 			// Add Comments widget to Project module
 			$modcommentsModuleInstance = vtlib\Module::getInstance('ModComments');
 			if ($modcommentsModuleInstance && file_exists('modules/ModComments/ModComments.php')) {
-				include_once 'modules/ModComments/ModComments.php';
+				include_once ROOT_DIRECTORY . 'modules/ModComments/ModComments.php';
 				if (class_exists('ModComments'))
 					ModComments::addWidgetTo(array('Project'));
 			}
@@ -374,7 +374,7 @@ class Project extends CRMEntity
 
 	static function registerLinks()
 	{
-		
+
 	}
 	/**
 	 * Here we override the parent's method,

@@ -19,8 +19,8 @@
  * be overloaded with module-specific methods and variables particular to the
  * module's base entity class.
  * ****************************************************************************** */
-require_once('include/utils/utils.php');
-require_once('include/utils/UserInfoUtil.php');
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/utils/UserInfoUtil.php';
 
 class CRMEntity
 {
@@ -52,12 +52,12 @@ class CRMEntity
 
 		// File access security check
 		if (!class_exists($modName)) {
-			if (AppConfig::performance('LOAD_CUSTOM_FILES') && file_exists("custom/modules/$module/$modName.php")) {
-				\vtlib\Deprecated::checkFileAccessForInclusion("custom/modules/$module/$modName.php");
-				require_once("custom/modules/$module/$modName.php");
+			if (AppConfig::performance('LOAD_CUSTOM_FILES') && file_exists(ROOT_DIRECTORY . "custom/modules/$module/$modName.php")) {
+				\vtlib\Deprecated::checkFileAccessForInclusion(ROOT_DIRECTORY . "custom/modules/$module/$modName.php");
+				require_once(ROOT_DIRECTORY . "custom/modules/$module/$modName.php");
 			} else {
 				\vtlib\Deprecated::checkFileAccessForInclusion("modules/$module/$modName.php");
-				require_once("modules/$module/$modName.php");
+				require_once(ROOT_DIRECTORY . "modules/$module/$modName.php");
 			}
 		}
 		$focus = new $modName();
@@ -368,7 +368,7 @@ class CRMEntity
 	 */
 	public function deletePerminently($moduleName, $recordId)
 	{
-		
+
 	}
 
 	/** Function to unlink an entity with given Id from another entity */
@@ -1311,7 +1311,7 @@ class CRMEntity
 	 */
 	public function getNonAdminModuleAccessQuery($module, $user)
 	{
-		require('user_privileges/sharing_privileges_' . $user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $user->id . '.php');
 		$tabId = \App\Module::getModuleId($module);
 		$sharingRuleInfoVariable = $module . '_share_read_permission';
 		$sharingRuleInfo = $$sharingRuleInfoVariable;
@@ -1359,8 +1359,8 @@ class CRMEntity
 	 */
 	public function getNonAdminAccessControlQuery($module, $user, $scope = '')
 	{
-		require('user_privileges/user_privileges_' . $user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $user->id . '.php');
 		$query = ' ';
 		$tabId = \App\Module::getModuleId($module);
 		if ($is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1 && $defaultOrgSharingPermission[$tabId] == 3) {
@@ -1584,6 +1584,6 @@ class CRMEntity
 	 */
 	public function vtlib_handler($moduleName, $eventType)
 	{
-		
+
 	}
 }

@@ -7,8 +7,8 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  * ********************************************************************************** */
-require_once('include/events/include.php');
-require_once 'modules/WSAPP/Utils.php';
+require_once ROOT_DIRECTORY . 'include/events/include.php';
+require_once ROOT_DIRECTORY . 'modules/WSAPP/Utils.php';
 
 class WSAPP
 {
@@ -80,7 +80,7 @@ class WSAPP
 				$operation_id = $adb->getUniqueId('vtiger_ws_operation');
 
 				$operation_res = $adb->pquery(
-					"INSERT INTO vtiger_ws_operation (operationid, name, handler_path, handler_method, type, prelogin) 
+					"INSERT INTO vtiger_ws_operation (operationid, name, handler_path, handler_method, type, prelogin)
 					VALUES (?,?,?,?,?,?)", array($operation_id, $operation_name, $operation_info['file'], $operation_info['handler'],
 					$operation_info['reqtype'], $operation_info['prelogin'])
 				);
@@ -89,7 +89,7 @@ class WSAPP
 				$parameter_index = 0;
 				foreach ($operation_parameters as $parameter_name => $parameter_type) {
 					$adb->pquery(
-						"INSERT INTO vtiger_ws_operation_parameters (operationid, name, type, sequence) 
+						"INSERT INTO vtiger_ws_operation_parameters (operationid, name, type, sequence)
 						VALUES(?,?,?,?)", array($operation_id, $parameter_name, $parameter_type, ($parameter_index + 1))
 					);
 					++$parameter_index;

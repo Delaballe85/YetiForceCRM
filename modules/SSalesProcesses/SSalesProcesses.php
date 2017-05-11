@@ -4,7 +4,7 @@
  * @license licenses/License.html
  * @author Radosław Skrzypczak <r.skrzypczak@yetiforce.com>
  */
-include_once 'modules/Vtiger/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
 
 class SSalesProcesses extends Vtiger_CRMEntity
 {
@@ -91,19 +91,19 @@ class SSalesProcesses extends Vtiger_CRMEntity
 
 			$modcommentsModuleInstance = vtlib\Module::getInstance('ModComments');
 			if ($modcommentsModuleInstance && file_exists('modules/ModComments/ModComments.php')) {
-				include_once 'modules/ModComments/ModComments.php';
+				include_once ROOT_DIRECTORY . 'modules/ModComments/ModComments.php';
 				if (class_exists('ModComments'))
 					ModComments::addWidgetTo(array('SSalesProcesses'));
 			}
 			CRMEntity::getInstance('ModTracker')->enableTrackingForModule(vtlib\Functions::getModuleId($moduleName));
 		} else if ($eventType == 'module.disabled') {
-			
+
 		} else if ($eventType == 'module.preuninstall') {
-			
+
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
-			
+
 		}
 	}
 
@@ -141,9 +141,9 @@ class SSalesProcesses extends Vtiger_CRMEntity
 	/**
 	 * Function to create array of all the sales in the hierarchy
 	 * @param integer $id - Id of the record highest in hierarchy
-	 * @param array $salesProcessesInfoBase 
+	 * @param array $salesProcessesInfoBase
 	 * @param integer $salesProcessesId - ssalesprocessesid
-	 * @param array $listviewEntries 
+	 * @param array $listviewEntries
 	 * returns All the parent sales of the given Sale in array format
 	 */
 	public function getHierarchyData($id, $salesProcessesInfoBase, $salesProcessesId, &$listviewEntries, $getRawData = false, $getLinks = true)

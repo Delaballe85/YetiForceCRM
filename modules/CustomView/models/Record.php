@@ -355,7 +355,7 @@ class CustomView_Record_Model extends Vtiger_Base_Model
 		$db->createCommand()->delete('vtiger_cvadvfilter', ['cvid' => $cvId])->execute();
 		$db->createCommand()->delete('vtiger_cvadvfilter_grouping', ['cvid' => $cvId])->execute();
 		$db->createCommand()->delete('vtiger_user_module_preferences', ['default_cvid' => $cvId])->execute();
-		// To Delete the mini list widget associated with the filter 
+		// To Delete the mini list widget associated with the filter
 		$db->createCommand()->delete('vtiger_module_dashboard', ['filterid' => $cvId])->execute();
 		App\Cache::clear();
 	}
@@ -675,7 +675,7 @@ class CustomView_Record_Model extends Vtiger_Base_Model
 					$countTempVal = count($temp_val);
 					for ($x = 0; $x < $countTempVal; $x++) {
 						if ($col[4] == 'D') {
-							/** while inserting in db for due_date it was taking date and time values also as it is 
+							/** while inserting in db for due_date it was taking date and time values also as it is
 							 * date time field. We only need to take date from that value
 							 */
 							if ($col[0] == 'vtiger_activity' && $col[1] == 'due_date') {
@@ -871,7 +871,7 @@ class CustomView_Record_Model extends Vtiger_Base_Model
 		$filterDir = 'modules' . DIRECTORY_SEPARATOR . $moduleName . DIRECTORY_SEPARATOR . 'filters';
 		if ($moduleName && file_exists($filterDir)) {
 			$view = ['setdefault' => 0, 'setmetrics' => 0, 'status' => 0, 'privileges' => 0];
-			$filters = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($filterDir, FilesystemIterator::SKIP_DOTS));
+			$filters = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($filterDir, \FilesystemIterator::SKIP_DOTS));
 			foreach ($filters as $filter) {
 				$name = str_replace('.php', '', $filter->getFilename());
 				$handlerClass = Vtiger_Loader::getComponentClassName('Filter', $name, $moduleName);
@@ -922,14 +922,14 @@ class CustomView_Record_Model extends Vtiger_Base_Model
 		$menuFilter = false;
 		if ($menuId) {
 			$userPrivModel = Users_Privileges_Model::getCurrentUserPrivilegesModel();
-			$roleMenu = 'user_privileges/menu_' . filter_var($userPrivModel->get('roleid'), FILTER_SANITIZE_NUMBER_INT) . '.php';
+			$roleMenu = ROOT_DIRECTORY . 'user_privileges/menu_' . filter_var($userPrivModel->get('roleid'), FILTER_SANITIZE_NUMBER_INT) . '.php';
 			if (file_exists($roleMenu)) {
 				require($roleMenu);
 			} else {
-				require('user_privileges/menu_0.php');
+				require(ROOT_DIRECTORY . 'user_privileges/menu_0.php');
 			}
 			if (count($menus) == 0) {
-				require('user_privileges/menu_0.php');
+				require(ROOT_DIRECTORY . 'user_privileges/menu_0.php');
 			}
 			if (array_key_exists($menuId, $filterList)) {
 				$filters = explode(',', $filterList[$menuId]['filters']);

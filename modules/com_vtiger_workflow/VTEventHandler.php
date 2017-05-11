@@ -7,24 +7,24 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  * ********************************************************************************** */
-require_once('include/events/SqlResultIterator.php');
-require_once('VTWorkflowManager.php');
-require_once('VTEntityCache.php');
+require_once ROOT_DIRECTORY . 'include/events/SqlResultIterator.php';
+require_once ROOT_DIRECTORY . 'VTWorkflowManager.php';
+require_once ROOT_DIRECTORY . 'VTEntityCache.php';
 
-require_once 'include/Webservices/Utils.php';
-require_once("modules/Users/Users.php");
-require_once("include/Webservices/VtigerCRMObject.php");
-require_once("include/Webservices/VtigerCRMObjectMeta.php");
-require_once("include/Webservices/DataTransform.php");
-require_once("include/Webservices/WebServiceError.php");
-require_once 'include/utils/utils.php';
-require_once 'include/Webservices/ModuleTypes.php';
-require_once('include/Webservices/Retrieve.php');
-require_once('include/Webservices/Update.php');
-require_once 'include/Webservices/WebserviceField.php';
-require_once 'include/Webservices/EntityMeta.php';
-require_once 'include/Webservices/VtigerWebserviceObject.php';
-require_once('VTWorkflowUtils.php');
+require_once ROOT_DIRECTORY . 'include/Webservices/Utils.php';
+require_once ROOT_DIRECTORY . 'modules/Users/Users.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerCRMObject.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerCRMObjectMeta.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/DataTransform.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/WebServiceError.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/ModuleTypes.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Retrieve.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Update.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/WebserviceField.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/EntityMeta.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VtigerWebserviceObject.php';
+require_once ROOT_DIRECTORY . 'VTWorkflowUtils.php';
 
 /*
  * VTEventHandler

@@ -8,8 +8,8 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once 'include/database/PearDatabase.php';
-require_once 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/database/PearDatabase.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
 
 function wsapp_getHandler($appType)
 {
@@ -65,10 +65,10 @@ function wsapp_getRecordEntityNameIds($entityNames, $modules, $user)
 		} else
 			$nameFields = $nameFieldsArray[0];
 
-		$query = sprintf("SELECT %s as id,%s as entityname 
-				FROM %s as moduleentity 
-				INNER JOIN vtiger_crmentity as crmentity 
-				WHERE %s IN(%s) && crmentity.deleted=0 
+		$query = sprintf("SELECT %s as id,%s as entityname
+				FROM %s as moduleentity
+				INNER JOIN vtiger_crmentity as crmentity
+				WHERE %s IN(%s) && crmentity.deleted=0
 				AND crmentity.crmid = moduleentity.%s", $meta->getObectIndexColumn(), $nameFields, $meta->getEntityBaseTable(), $nameFields, generateQuestionMarks($entityNames), $meta->getObectIndexColumn());
 		$result = $db->pquery($query, $entityNames);
 		$num_rows = $db->num_rows($result);

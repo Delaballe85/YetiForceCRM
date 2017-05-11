@@ -19,7 +19,6 @@ class Vtiger_Theme extends Vtiger_Viewer
 	{
 		$filePath = self::getThemePath() . '/' . 'style.css';
 		$completeFilePath = Vtiger_Loader::resolveNameToPath('~' . $filePath);
-
 		if (file_exists($completeFilePath)) {
 			return $filePath;
 		}
@@ -52,8 +51,8 @@ class Vtiger_Theme extends Vtiger_Viewer
 	 * Function to get the image path or get defaulf
 	 * This function searches for an image, it takes a default name in case it's missing,
 	 * if there's no image with a default name it will return false
-	 * @param string $imageFileName - file name 
-	 * @param string $defaultFileName - file name 
+	 * @param string $imageFileName - file name
+	 * @param string $defaultFileName - file name
 	 * @return <string/boolean> - returns file path if exists or false;
 	 */
 	public static function getOrignOrDefaultImgPath($imageFileName, $defaultFileName)
@@ -115,9 +114,8 @@ class Vtiger_Theme extends Vtiger_Viewer
 		$selectedThemePath = self::getBaseThemePath() . '/' . $theme;
 		$fallBackThemePath = self::getBaseThemePath() . '/' . self::getDefaultThemeName();
 
-		$completeSelectedThemePath = Vtiger_Loader::resolveNameToPath('~' . $selectedThemePath);
-		$completeFallBackThemePath = Vtiger_Loader::resolveNameToPath('~' . $fallBackThemePath);
-
+		$completeSelectedThemePath = Vtiger_Loader::resolveNameToPath('~' . 'public/' . $selectedThemePath);
+		$completeFallBackThemePath = Vtiger_Loader::resolveNameToPath('~' . 'public/' . $fallBackThemePath);
 		if (file_exists($completeSelectedThemePath)) {
 			return $selectedThemePath;
 		} else if (file_exists($completeFallBackThemePath)) {

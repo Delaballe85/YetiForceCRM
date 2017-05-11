@@ -12,7 +12,7 @@ class Vtiger_Watchdog_Model extends Vtiger_Base_Model
 
 	const RECORD_ACTIVE = 1;
 
-	protected static $cacheFile = 'user_privileges/watchdogModule.php';
+	protected static $cacheFile = ROOT_DIRECTORY . 'user_privileges/watchdogModule.php';
 	protected static $cache = false;
 	protected $watchingUsers = false;
 	private $isAcive = true;

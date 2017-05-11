@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
 
 class PBXManager_PBXManager_Connector
 {
@@ -45,7 +45,7 @@ class PBXManager_PBXManager_Connector
 
 	public function getPicklistValues($field)
 	{
-		
+
 	}
 
 	public function getServer()
@@ -114,7 +114,7 @@ class PBXManager_PBXManager_Connector
 
 	/**
 	 * Function to handle the dial call event
-	 * @param \App\Request $details 
+	 * @param \App\Request $details
 	 */
 	public function handleDialCall($details)
 	{
@@ -127,7 +127,7 @@ class PBXManager_PBXManager_Connector
 		$recordModel = PBXManager_Record_Model::getInstanceBySourceUUID($callid);
 		$direction = $recordModel->get('direction');
 		if ($direction == self::INCOMING_TYPE) {
-			// For Incoming call, we should fill the user field if he answered that call 
+			// For Incoming call, we should fill the user field if he answered that call
 			$user = PBXManager_Record_Model::getUserInfoWithNumber($answeredby);
 			$params['user'] = $user['id'];
 			$recordModel->updateAssignedUser($user['id']);
@@ -145,7 +145,7 @@ class PBXManager_PBXManager_Connector
 
 	/**
 	 * Function to handle the EndCall event
-	 * @param \App\Request $details 
+	 * @param \App\Request $details
 	 */
 	public function handleEndCall($details)
 	{
@@ -162,7 +162,7 @@ class PBXManager_PBXManager_Connector
 
 	/**
 	 * Function to handle the hangup call event
-	 * @param \App\Request $details 
+	 * @param \App\Request $details
 	 */
 	public function handleHangupCall($details)
 	{
@@ -199,7 +199,7 @@ class PBXManager_PBXManager_Connector
 
 	/**
 	 * Function to handle record event
-	 * @param \App\Request $details 
+	 * @param \App\Request $details
 	 */
 	public function handleRecording($details)
 	{
@@ -211,7 +211,7 @@ class PBXManager_PBXManager_Connector
 
 	/**
 	 * Function to handle AGI event
-	 * @param \App\Request $details 
+	 * @param \App\Request $details
 	 */
 	public function handleStartupCall($details, $userInfo, $customerInfo)
 	{
@@ -246,7 +246,7 @@ class PBXManager_PBXManager_Connector
 
 	/**
 	 * Function to respond for incoming calls
-	 * @param \App\Request $details 
+	 * @param \App\Request $details
 	 */
 	public function respondToIncomingCall($details)
 	{
@@ -293,7 +293,7 @@ class PBXManager_PBXManager_Connector
 
 	/**
 	 * Function to respond for outgoing calls
-	 * @param \App\Request $details 
+	 * @param \App\Request $details
 	 */
 	public function respondToOutgoingCall($to)
 	{
@@ -321,7 +321,7 @@ class PBXManager_PBXManager_Connector
 	}
 
 	/**
-	 * Function to make outbound call 
+	 * Function to make outbound call
 	 * @param string $number (Customer)
 	 * @param string $recordid
 	 */

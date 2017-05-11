@@ -107,7 +107,7 @@ class LayoutImport extends LayoutExport
 						$targetdir = "layouts/$name/" . str_replace("layouts/$name", "", $targetdir);
 						@mkdir($targetdir, 0755, true);
 					}
-					$filepath = 'zip://' . ROOT_DIRECTORY . DIRECTORY_SEPARATOR . $zipfile . '#' . $filename;
+					$filepath = 'zip://' . ROOT_DIRECTORY . $zipfile . '#' . $filename;
 					$fileInfo = pathinfo($filepath);
 					if (in_array($fileInfo['extension'], $badFileExtensions)) {
 						$fileValidation = false;

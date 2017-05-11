@@ -8,10 +8,10 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * *********************************************************************************** */
-require_once 'include/Webservices/Utils.php';
-require_once 'include/Webservices/ModuleTypes.php';
-require_once 'include/utils/CommonUtils.php';
-require_once 'include/Webservices/DescribeObject.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Utils.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/ModuleTypes.php';
+require_once ROOT_DIRECTORY . 'include/utils/CommonUtils.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/DescribeObject.php';
 
 function vtws_sync($mtime, $elementType, $syncType, $user)
 {

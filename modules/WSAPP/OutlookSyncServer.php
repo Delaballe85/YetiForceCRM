@@ -8,9 +8,9 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once 'modules/WSAPP/Utils.php';
-require_once 'include/database/PearDatabase.php';
-require_once 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'modules/WSAPP/Utils.php';
+require_once ROOT_DIRECTORY . 'include/database/PearDatabase.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
 
 class OutlookSyncServer extends SyncServer
 {
@@ -26,12 +26,12 @@ class OutlookSyncServer extends SyncServer
 			'handlerpath' => 'modules/WSAPP/Handlers/OutlookVtigerCRMHandler.php');
 	}
 	/*
-	 * Function overrided to deal duplication handling 
+	 * Function overrided to deal duplication handling
 	 */
 
 	public function put($key, $element, $user)
 	{
-		
+
 		$db = PearDatabase::getInstance();
 		$appid = parent::appid_with_key($key);
 		if (empty($appid)) {

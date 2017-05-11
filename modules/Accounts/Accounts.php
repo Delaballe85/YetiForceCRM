@@ -85,7 +85,7 @@ class Accounts extends CRMEntity
 		$current_user = vglobal('current_user');
 		\App\Log::trace("Entering create_export_query(" . $where . ") method ...");
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery("Accounts", "detail_view");
@@ -239,9 +239,9 @@ class Accounts extends CRMEntity
 	/**
 	 * Function to create array of all the accounts in the hierarchy
 	 * @param  integer   $id - Id of the record highest in hierarchy
-	 * @param  array   $accountInfoBase 
+	 * @param  array   $accountInfoBase
 	 * @param  integer   $accountId - accountid
-	 * @param  array   $listviewEntries 
+	 * @param  array   $listviewEntries
 	 * returns All the parent accounts of the given accountid in array format
 	 */
 	public function getHierarchyData($id, $accountInfoBase, $accountId, &$listviewEntries)
@@ -249,7 +249,7 @@ class Accounts extends CRMEntity
 
 		\App\Log::trace('Entering getHierarchyData(' . $id . ',' . $accountId . ') method ...');
 		$currentUser = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $currentUser->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $currentUser->id . '.php');
 
 		$hasRecordViewAccess = (vtlib\Functions::userIsAdministrator($currentUser)) || (isPermitted('Accounts', 'DetailView', $accountId) == 'yes');
 		foreach ($this->hierarchyFields as &$field) {
@@ -272,7 +272,7 @@ class Accounts extends CRMEntity
 					$account_depth = str_repeat(' .. ', $accountInfoBase['depth']);
 					$data = $account_depth . $data;
 				} else if ($fieldName == 'assigned_user_id' || $fieldName == 'shownerid') {
-					
+
 				} else {
 					$fieldModel = Vtiger_Field_Model::getInstanceFromFieldId($field['fieldid']);
 					$rawData = $data;

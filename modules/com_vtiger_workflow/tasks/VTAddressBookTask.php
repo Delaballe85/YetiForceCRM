@@ -5,11 +5,11 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * *********************************************************************************************************************************** */
-require_once('modules/com_vtiger_workflow/VTWorkflowUtils.php');
-require_once('modules/Users/Users.php');
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTWorkflowUtils.php';
+require_once ROOT_DIRECTORY . 'modules/Users/Users.php';
 
 class VTAddressBookTask extends VTTask
 {

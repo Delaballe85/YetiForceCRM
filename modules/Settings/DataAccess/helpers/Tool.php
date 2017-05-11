@@ -5,13 +5,13 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * *********************************************************************************************************************************** */
-include_once 'include/main/WebUI.php';
-include_once 'modules/com_vtiger_workflow/include.php';
-include_once 'modules/com_vtiger_workflow/tasks/VTEntityMethodTask.php';
-include_once 'modules/com_vtiger_workflow/VTEntityMethodManager.php';
+include_once ROOT_DIRECTORY . 'include/main/WebUI.php';
+include_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/include.php';
+include_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/tasks/VTEntityMethodTask.php';
+include_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTEntityMethodManager.php';
 
 class Oss_Tool
 {
@@ -33,7 +33,7 @@ class Oss_Tool
 	}
 
 	/**
-	 * Dodaje od modułu pole uitype 70 odpowieadające za 
+	 * Dodaje od modułu pole uitype 70 odpowieadające za
 	 * wyświetlanie czasu utworzenia i modyfikacji rekordu.
 	 *
 	 * @param string $moduleName - nazwa modułu
@@ -70,7 +70,7 @@ class Oss_Tool
 	 *
 	 * @param string $moduleName nazwa modułu
 	 * @param string $blockLabel etykieta bloku
-	 * @param string $fieldName nazwa pola 
+	 * @param string $fieldName nazwa pola
 	 * @param string $fieldLabel etykieta pola, jeśli nie jest podany etykieta jest taka jak nazwa pola
 	 */
 	public static function addUitype56Field($moduleName, $blockLabel, $fieldName = NULL, $fieldLabel = NULL)
@@ -121,7 +121,7 @@ class Oss_Tool
 	 * @param string $moduleName - nazwa modułu
 	 * @param string $blockLabel - etykieta bloku
 	 * @param array $pickValue - tablica zawierająca listę opcji do wyboru
-	 * @param string $fieldName - nazwa pola 
+	 * @param string $fieldName - nazwa pola
 	 * @param string $defaultvalue - domyślnie zaznaczona wartośc
 	 * @param bool $mandatory - czy pole ma być obowiązkowe
 	 * @param string $fieldLabel - etykieta pola, jeśli nie jest podany etykieta jest taka jak nazwa pola
@@ -189,7 +189,7 @@ class Oss_Tool
 	 * @param string $moduleName nazwa modułu
 	 * @param string $blockLabel etykieta bloku
 	 * @param array $relModuleList tablica zawierająca listę modułów powiązanych
-	 * @param string $fieldName nazwa pola 
+	 * @param string $fieldName nazwa pola
 	 * @param bool $mandatory czy pole ma być obowiązkowe
 	 * @param string $fieldLabel etykieta pola, jeśli nie jest podany etykieta jest taka jak nazwa pola
 	 */
@@ -345,7 +345,7 @@ class Oss_Tool
 	}
 
 	/**
-	 * Funkcja sprawdza czy wszystkie wymagane parametry funkcji zostały podane. 
+	 * Funkcja sprawdza czy wszystkie wymagane parametry funkcji zostały podane.
 	 * W razie braku wszystkich parametrów dopisuje do logu odpowiednią informację
 	 *
 	 * @param array $parameterList lista parametrów

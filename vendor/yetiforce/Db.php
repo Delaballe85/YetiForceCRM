@@ -30,7 +30,7 @@ class Db extends \yii\db\Connection
 	static private $config;
 
 	/**
-	 * @var boolean Enable caching database instance 
+	 * @var boolean Enable caching database instance
 	 */
 	static public $connectCache = false;
 
@@ -91,7 +91,7 @@ class Db extends \yii\db\Connection
 	public static function getConfig($type, $reload = false)
 	{
 		if (!static::$config || $reload) {
-			static::$config = require('config/config.db.php');
+			static::$config = require(ROOT_DIRECTORY . 'config/config.db.php');
 		}
 		if (isset(static::$config[$type])) {
 			return static::$config[$type];
@@ -102,7 +102,7 @@ class Db extends \yii\db\Connection
 	/**
 	 * Set database connection configuration
 	 * @param array $config
-	 * @param string $type 
+	 * @param string $type
 	 */
 	public static function setConfig($config, $type = 'base')
 	{
@@ -152,7 +152,7 @@ class Db extends \yii\db\Connection
 	}
 
 	/**
-	 * Get table unique ID. Temporary function 
+	 * Get table unique ID. Temporary function
 	 * @param string $tableName
 	 * @param false|string $columnName
 	 * @param bool $seq

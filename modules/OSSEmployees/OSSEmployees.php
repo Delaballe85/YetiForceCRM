@@ -5,10 +5,10 @@
  * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * See the License for the specific language governing rights and limitations under the License.
  * The Original Code is YetiForce.
- * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com. 
+ * The Initial Developer of the Original Code is YetiForce. Portions created by YetiForce are Copyright (C) www.yetiforce.com.
  * All Rights Reserved.
  * *********************************************************************************************************************************** */
-include_once 'modules/Vtiger/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
 
 class OSSEmployees extends Vtiger_CRMEntity
 {
@@ -109,7 +109,7 @@ class OSSEmployees extends Vtiger_CRMEntity
 
 
 		\App\Log::trace("Entering getEmployeeHierarchy(" . $id . ") method ...");
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
 
 		$listview_header = Array();
 		$listview_entries = array();
@@ -265,20 +265,20 @@ class OSSEmployees extends Vtiger_CRMEntity
 			// block with comments
 			$modcommentsModuleInstance = vtlib\Module::getInstance('ModComments');
 			if ($modcommentsModuleInstance && file_exists('modules/ModComments/ModComments.php')) {
-				include_once 'modules/ModComments/ModComments.php';
+				include_once ROOT_DIRECTORY . 'modules/ModComments/ModComments.php';
 				if (class_exists('ModComments'))
 					ModComments::addWidgetTo(array('OSSEmployees'));
 			}
 		} else if ($event_type == 'module.disabled') {
-			
+
 		} else if ($event_type == 'module.enabled') {
-			
+
 		} else if ($event_type == 'module.preuninstall') {
-			
+
 		} else if ($event_type == 'module.preupdate') {
-			
+
 		} else if ($event_type == 'module.postupdate') {
-			
+
 		}
 	}
 }

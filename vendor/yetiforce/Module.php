@@ -90,7 +90,7 @@ class Module
 	static public function getTabData($type)
 	{
 		if (static::$tabdataCache === false) {
-			static::$tabdataCache = require 'user_privileges/tabdata.php';
+			static::$tabdataCache = require ROOT_DIRECTORY . 'user_privileges/tabdata.php';
 		}
 		return isset(static::$tabdataCache[$type]) ? static::$tabdataCache[$type] : false;
 	}

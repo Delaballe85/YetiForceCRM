@@ -24,7 +24,7 @@ class API_CalDAV_Model
 	public function __construct()
 	{
 // Autoloader
-		require_once 'libraries/SabreDAV/autoload.php';
+		require_once ROOT_DIRECTORY . 'libraries/SabreDAV/autoload.php';
 	}
 
 	public function calDavCrm2Dav()

@@ -1,6 +1,6 @@
 <?php
 // $Id: iCalendar_components.php,v 1.8 2005/07/21 22:31:44 defacer Exp $
-require_once('include/utils/utils.php');
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
 
 class iCalendar_component
 {
@@ -136,7 +136,7 @@ class iCalendar_component
 
 	public function get_property_list($name)
 	{
-		
+
 	}
 
 	public function invariant_holds()
@@ -294,7 +294,7 @@ class iCalendar_component
 			}
 			if (!empty($ical_activity['VALARM'])) {
 				$temp = str_replace("P", '', $ical_activity['VALARM']['TRIGGER']);
-				//if there is negative value then ignore it because in vtiger even though its negative or postiview we 
+				//if there is negative value then ignore it because in vtiger even though its negative or postiview we
 				//make reminder to be before the event
 				$temp = str_replace("-", '', $temp);
 				$durationTypeCharacters = array('W', 'D', 'T', 'H', 'M', 'S');
@@ -635,12 +635,12 @@ class iCalendar_todo extends iCalendar_component
 
 class iCalendar_journal extends iCalendar_component
 {
-	
+
 }
 
 class iCalendar_freebusy extends iCalendar_component
 {
-	
+
 }
 
 class iCalendar_alarm extends iCalendar_component

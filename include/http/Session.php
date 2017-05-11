@@ -9,7 +9,7 @@
  * ********************************************************************************** */
 
 // Import dependencies
-include_once 'libraries/HTTP_Session/Session.php';
+include_once ROOT_DIRECTORY . 'libraries/HTTP_Session/Session.php';
 
 /**
  * Session class
@@ -23,7 +23,7 @@ class Vtiger_Session
 	 */
 	private function __construct()
 	{
-		
+
 	}
 
 	/**

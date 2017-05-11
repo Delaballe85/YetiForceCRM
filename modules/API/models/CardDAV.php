@@ -32,7 +32,7 @@ class API_CardDAV_Model
 		$this->pdo = new PDO($dbConfig['dsn'] . ';charset=' . $dbConfig['charset'], $dbConfig['username'], $dbConfig['password']);
 		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		// Autoloader
-		require_once 'libraries/SabreDAV/autoload.php';
+		require_once ROOT_DIRECTORY . 'libraries/SabreDAV/autoload.php';
 	}
 
 	public function cardDavCrm2Dav()

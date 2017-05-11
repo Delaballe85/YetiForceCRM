@@ -30,7 +30,7 @@ class Utils
 	/**
 	 * Implode the prefix and suffix as string for given number of times
 	 * @param String prefix to use
-	 * @param Integer Number of times 
+	 * @param Integer Number of times
 	 * @param String suffix to use (optional)
 	 */
 	static function implodestr($prefix, $count, $suffix = false)
@@ -57,7 +57,7 @@ class Utils
 
 		/** Replace all \\ with \ first */
 		$realfilepath = str_replace('\\\\', '\\', $realfilepath);
-		$rootdirpath = str_replace('\\\\', '\\', ROOT_DIRECTORY . DIRECTORY_SEPARATOR);
+		$rootdirpath = str_replace('\\\\', '\\', ROOT_DIRECTORY);
 
 		/** Replace all \ with / now */
 		$realfilepath = str_replace('\\', '/', $realfilepath);
@@ -77,7 +77,7 @@ class Utils
 	}
 
 	/**
-	 * Function to check the file access is made within web root directory. 
+	 * Function to check the file access is made within web root directory.
 	 * @param String File path to check
 	 * @param Boolean False to avoid die() if check fails
 	 */
@@ -110,7 +110,7 @@ class Utils
 	}
 
 	/**
-	 * Log the debug message 
+	 * Log the debug message
 	 * @param String Log message
 	 * @param Boolean true to append end-of-line, false otherwise
 	 */
@@ -155,7 +155,7 @@ class Utils
 	/**
 	 * Create table (supressing failure)
 	 * @param String tablename to create
-	 * @param String table creation criteria like '(columnname columntype, ....)' 
+	 * @param String table creation criteria like '(columnname columntype, ....)'
 	 * @param String Optional suffix to add during table creation
 	 * <br>
 	 * will be appended to CREATE TABLE $tablename SQL
@@ -172,7 +172,7 @@ class Utils
 				if ($adb->isMySQL()) {
 					$suffixTableMeta = ' ENGINE=InnoDB DEFAULT CHARSET=utf8';
 				} else {
-					
+
 				}
 			}
 			$sql .= $suffixTableMeta;
@@ -185,7 +185,7 @@ class Utils
 	 * Add column to existing table
 	 * @param string $tableName to alter
 	 * @param string $columnName to add
-	 * @param array|string $criteria ([\yii\db\Schema::TYPE_STRING, 1024] | string(1024)) 
+	 * @param array|string $criteria ([\yii\db\Schema::TYPE_STRING, 1024] | string(1024))
 	 */
 	public static function AddColumn($tableName, $columnName, $criteria)
 	{
@@ -258,9 +258,9 @@ class Utils
 	 * funtion to log the exception messge to module.log file
 	 * @global type $site_URL
 	 * @param string $module name of the log file and It should be a alphanumeric string
-	 * @param <Exception>/string $exception Massage show in the log ,It should be a string or Exception object 
+	 * @param <Exception>/string $exception Massage show in the log ,It should be a string or Exception object
 	 * @param <array> $extra extra massages need to be displayed
-	 * @param <boolean> $backtrace flag to enable or disable backtrace in log  
+	 * @param <boolean> $backtrace flag to enable or disable backtrace in log
 	 * @param <boolean> $request flag to enable or disable request in log
 	 */
 	static function ModuleLog($module, $mixed, $extra = [])
@@ -289,7 +289,7 @@ class Utils
 				array_push($log, "");
 			}
 			$fileName = self::$logFileName;
-			$fp = fopen("cache/logs/$fileName", 'a+');
+			$fp = fopen(ROOT_DIRECTORY . "cache/logs/$fileName", 'a+');
 			fputcsv($fp, $log);
 			fclose($fp);
 		}

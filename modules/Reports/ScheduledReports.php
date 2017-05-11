@@ -8,8 +8,8 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once 'modules/Reports/Reports.php';
-require_once 'modules/Reports/ReportRun.php';
+require_once ROOT_DIRECTORY . 'modules/Reports/Reports.php';
+require_once ROOT_DIRECTORY . 'modules/Reports/ReportRun.php';
 
 class VTScheduledReport extends Reports
 {
@@ -98,7 +98,7 @@ class VTScheduledReport extends Reports
 
 
 			if (!empty($recipientsInfo['groups'])) {
-				require_once 'include/utils/GetGroupUsers.php';
+				require_once ROOT_DIRECTORY . 'include/utils/GetGroupUsers.php';
 				foreach ($recipientsInfo['groups'] as $groupId) {
 					$userGroups = new GetGroupUsers();
 					$userGroups->getAllUsersInGroup($groupId);
@@ -362,7 +362,7 @@ class VTScheduledReport extends Reports
 
 	public static function runScheduledReports($adb)
 	{
-		require_once 'modules/com_vtiger_workflow/VTWorkflowUtils.php';
+		require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTWorkflowUtils.php';
 		$util = new VTWorkflowUtils();
 		$adminUser = $util->adminUser();
 

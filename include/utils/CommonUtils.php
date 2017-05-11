@@ -20,8 +20,8 @@
  * Contributor(s): ______________________________________..
  * ****************************************************************************** */
 
-require_once('include/utils/utils.php'); //new
-require_once 'include/runtime/Cache.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php'; //new
+require_once ROOT_DIRECTORY . 'include/runtime/Cache.php';
 
 function getEntityName($module, $ids, $compute = true)
 {
@@ -34,7 +34,7 @@ function getEntityName($module, $ids, $compute = true)
 	}
 }
 // vtiger cache utility
-require_once('include/utils/VTCacheUtils.php');
+require_once ROOT_DIRECTORY . 'include/utils/VTCacheUtils.php';
 // vtlib customization: Extended vtiger CRM utlitiy functions
-require_once('include/utils/VtlibUtils.php');
+require_once ROOT_DIRECTORY . 'include/utils/VtlibUtils.php';
 

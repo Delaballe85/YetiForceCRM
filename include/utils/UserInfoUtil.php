@@ -8,12 +8,12 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ****************************************************************************** */
-require_once 'include/database/PearDatabase.php';
-require_once 'include/utils/utils.php';
-require_once 'include/utils/GetUserGroups.php';
-require_once 'include/events/include.php';
-require_once 'include/runtime/Globals.php';
-require_once 'include/runtime/Cache.php';
+require_once ROOT_DIRECTORY . 'include/database/PearDatabase.php';
+require_once ROOT_DIRECTORY . 'include/utils/utils.php';
+require_once ROOT_DIRECTORY . 'include/utils/GetUserGroups.php';
+require_once ROOT_DIRECTORY . 'include/events/include.php';
+require_once ROOT_DIRECTORY . 'include/runtime/Globals.php';
+require_once ROOT_DIRECTORY . 'include/runtime/Cache.php';
 
 /** Function to get the lists of groupids releated with an user
  * This function accepts the user id as arguments and
@@ -345,7 +345,7 @@ function isReadPermittedBySharing($module, $tabid, $actionid, $record_id)
 	\App\Log::trace("Entering isReadPermittedBySharing(" . $module . "," . $tabid . "," . $actionid . "," . $record_id . ") method ...");
 	$adb = PearDatabase::getInstance();
 	$current_user = vglobal('current_user');
-	require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+	require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 	$ownertype = '';
 	$ownerid = '';
 	$sharePer = 'no';
@@ -455,7 +455,7 @@ function isReadWritePermittedBySharing($module, $tabid, $actionid, $record_id)
 	\App\Log::trace("Entering isReadWritePermittedBySharing(" . $module . "," . $tabid . "," . $actionid . "," . $record_id . ") method ...");
 	$adb = PearDatabase::getInstance();
 	$current_user = vglobal('current_user');
-	require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+	require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 	$ownertype = '';
 	$ownerid = '';
 	$sharePer = 'no';
@@ -1211,7 +1211,7 @@ function getCurrentUserGroupList()
 
 	\App\Log::trace("Entering getCurrentUserGroupList() method ...");
 	$current_user = vglobal('current_user');
-	require('user_privileges/user_privileges_' . $current_user->id . '.php');
+	require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
 	$grpList = [];
 	if (sizeof($current_user_groups) > 0) {
 		$i = 0;
@@ -1273,8 +1273,8 @@ function getListViewSecurityParameter($module)
 	$tabid = \App\Module::getModuleId($module);
 	$current_user = vglobal('current_user');
 	if ($current_user) {
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 	}
 	if ($module == 'Leads') {
 		$sec_query .= " and (
@@ -1390,8 +1390,8 @@ function getPermittedModuleNames()
 	\App\Log::trace("Entering getPermittedModuleNames() method ...");
 	$current_user = vglobal('current_user');
 	$permittedModules = [];
-	require('user_privileges/user_privileges_' . $current_user->id . '.php');
-	include('user_privileges/tabdata.php');
+	require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+	include(ROOT_DIRECTORY . 'user_privileges/tabdata.php');
 
 	if ($is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1) {
 		foreach ($tab_seq_array as $tabid => $seq_value) {
@@ -1419,8 +1419,8 @@ function getPermittedModuleIdList()
 {
 	$current_user = vglobal('current_user');
 	$permittedModules = [];
-	require('user_privileges/user_privileges_' . $current_user->id . '.php');
-	include('user_privileges/tabdata.php');
+	require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+	include(ROOT_DIRECTORY . 'user_privileges/tabdata.php');
 
 	if ($is_admin === false && $profileGlobalPermission[1] == 1 &&
 		$profileGlobalPermission[2] == 1) {
@@ -1452,7 +1452,7 @@ function RecalculateSharingRules()
 
 	\App\Log::trace("Entering RecalculateSharingRules() method ...");
 	$adb = PearDatabase::getInstance();
-	require_once('modules/Users/CreateUserPrivilegeFile.php');
+	require_once(ROOT_DIRECTORY . 'modules/Users/CreateUserPrivilegeFile.php');
 	$query = "select id from vtiger_users where deleted=0";
 	$result = $adb->pquery($query, []);
 	$num_rows = $adb->num_rows($result);

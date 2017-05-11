@@ -5,7 +5,7 @@
  * @license licenses/License.html
  * @author Tomasz Kur <t.kur@yetiforce.com>
  */
-include_once 'modules/Vtiger/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
 
 class SVendorEnquiries extends Vtiger_CRMEntity
 {
@@ -86,15 +86,15 @@ class SVendorEnquiries extends Vtiger_CRMEntity
 	{
 		$adb = PearDatabase::getInstance();
 		if ($eventType == 'module.postinstall') {
-			
+
 		} else if ($eventType == 'module.disabled') {
-			
+
 		} else if ($eventType == 'module.preuninstall') {
-			
+
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
-			
+
 		}
 	}
 }

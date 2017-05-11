@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com.
  * ********************************************************************************** */
-require_once('include/CRMEntity.php');
+require_once ROOT_DIRECTORY . 'include/CRMEntity.php';
 
 class ModCommentsCore extends CRMEntity
 {
@@ -180,8 +180,8 @@ class ModCommentsCore extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -226,7 +226,7 @@ class ModCommentsCore extends CRMEntity
 	{
 		$current_user = vglobal('current_user');
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('ModComments', "detail_view");
@@ -267,8 +267,8 @@ class ModCommentsCore extends CRMEntity
 		else
 			$query .= " WHERE $where_auto";
 
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		// Security Check for Field Access
 		if ($is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1 && $defaultOrgSharingPermission[7] == 3) {
@@ -379,17 +379,17 @@ class ModCommentsCore extends CRMEntity
 	public function vtlib_handler($modulename, $event_type)
 	{
 		if ($event_type == 'module.postinstall') {
-			
+
 		} else if ($event_type == 'module.disabled') {
-			
+
 		} else if ($event_type == 'module.enabled') {
-			
+
 		} else if ($event_type == 'module.preuninstall') {
-			
+
 		} else if ($event_type == 'module.preupdate') {
-			
+
 		} else if ($event_type == 'module.postupdate') {
-			
+
 		}
 	}
 }

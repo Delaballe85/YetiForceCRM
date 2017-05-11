@@ -11,7 +11,7 @@ class Settings_Companies_Record_Model extends Settings_Vtiger_Record_Model
 
 	public static $logoNames = ['logo_login', 'logo_main', 'logo_mail'];
 	public static $logoSupportedFormats = ['jpeg', 'jpg', 'png', 'gif', 'pjpeg', 'x-png'];
-	public $logoPath = 'storage/Logo/';
+	public $logoPath = PUBLIC_DIRECTORY . 'storage/Logo/';
 
 	/**
 	 * Function to get the Id
@@ -202,7 +202,7 @@ class Settings_Companies_Record_Model extends Settings_Vtiger_Record_Model
 	 */
 	public function saveLogo($name)
 	{
-		$uploadDir = ROOT_DIRECTORY . DIRECTORY_SEPARATOR . $this->logoPath;
+		$uploadDir = ROOT_DIRECTORY . $this->logoPath;
 		$logoName = $uploadDir . \App\Fields\File::sanitizeUploadFileName($_FILES[$name]['name']);
 		move_uploaded_file($_FILES[$name]['tmp_name'], $logoName);
 		copy($logoName, $uploadDir . 'application.ico');
@@ -210,7 +210,7 @@ class Settings_Companies_Record_Model extends Settings_Vtiger_Record_Model
 
 	/**
 	 * Function to check if company duplicated
-	 * @param \App\Request $request	
+	 * @param \App\Request $request
 	 * @return boolean
 	 */
 	public function isCompanyDuplicated(\App\Request $request)
@@ -228,7 +228,7 @@ class Settings_Companies_Record_Model extends Settings_Vtiger_Record_Model
 
 	/**
 	 * Function to set companies not default
-	 * @param string $name 
+	 * @param string $name
 	 */
 	public function setCompaniesNotDefault($default)
 	{

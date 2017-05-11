@@ -68,7 +68,7 @@ class Vtiger_Files_Model extends Vtiger_Base_Model
 		$dataReader = $query->createCommand()->query();
 		while ($row = $dataReader->read()) {
 			$db->createCommand()->delete('u_#__attachments', ['attachmentid' => $row['attachmentid']])->execute();
-			$fileName = ROOT_DIRECTORY . DIRECTORY_SEPARATOR . $row['attachmentid'] . $row['attachmentid'] . '_' . $row['name'];
+			$fileName = ROOT_DIRECTORY . $row['attachmentid'] . $row['attachmentid'] . '_' . $row['name'];
 			if (file_exists($fileName)) {
 				chmod($fileName, 0750);
 				unlink($fileName);

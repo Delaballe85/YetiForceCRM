@@ -566,7 +566,7 @@ class Vtiger_Relation_Model extends Vtiger_Base_Model
 			}
 		} else {
 			if ($destinationModuleName === 'ModComments') {
-				include_once('modules/ModTracker/ModTracker.php');
+				include_once(ROOT_DIRECTORY . 'modules/ModTracker/ModTracker.php');
 				ModTracker::unLinkRelation($sourceModuleName, $sourceRecordId, $destinationModuleName, $relatedRecordId);
 				return true;
 			}

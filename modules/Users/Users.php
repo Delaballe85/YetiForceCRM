@@ -24,10 +24,10 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com.
  * ****************************************************************************** */
-require_once('include/utils/UserInfoUtil.php');
-require_once 'include/utils/CommonUtils.php';
-require_once 'include/Webservices/Utils.php';
-require_once('modules/Users/UserTimeZonesArray.php');
+require_once ROOT_DIRECTORY . 'include/utils/UserInfoUtil.php';
+require_once ROOT_DIRECTORY . 'include/utils/CommonUtils.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/Utils.php';
+require_once ROOT_DIRECTORY . 'modules/Users/UserTimeZonesArray.php';
 
 // User is used to store customer information.
 /** Main class for the user module
@@ -766,7 +766,7 @@ class Users extends CRMEntity
 
 	public function filterInactiveFields($module)
 	{
-		
+
 	}
 
 	public function deleteImage()

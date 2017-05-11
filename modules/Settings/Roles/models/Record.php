@@ -187,8 +187,8 @@ class Settings_Roles_Record_Model extends Settings_Vtiger_Record_Model
 
 		$db = PearDatabase::getInstance();
 
-		$query = 'SELECT directly_related_to_role, vtiger_profile.profileid FROM vtiger_role2profile 
-                  INNER JOIN vtiger_profile ON vtiger_profile.profileid = vtiger_role2profile.profileid 
+		$query = 'SELECT directly_related_to_role, vtiger_profile.profileid FROM vtiger_role2profile
+                  INNER JOIN vtiger_profile ON vtiger_profile.profileid = vtiger_role2profile.profileid
                   WHERE vtiger_role2profile.roleid=?';
 		$params = array($this->getId());
 
@@ -420,7 +420,7 @@ class Settings_Roles_Record_Model extends Settings_Vtiger_Record_Model
 			$roleModel->save();
 		}
 		if (is_array($array_users)) {
-			require_once('modules/Users/CreateUserPrivilegeFile.php');
+			require_once(ROOT_DIRECTORY . 'modules/Users/CreateUserPrivilegeFile.php');
 			foreach ($array_users as $userid) {
 				createUserPrivilegesfile($userid);
 				createUserSharingPrivilegesfile($userid);

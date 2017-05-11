@@ -10,7 +10,7 @@
 include_once dirname(__FILE__) . '/ModCommentsCore.php';
 include_once dirname(__FILE__) . '/models/Comments.php';
 
-require_once 'include/utils/VtlibUtils.php';
+require_once ROOT_DIRECTORY . 'include/utils/VtlibUtils.php';
 
 class ModComments extends ModCommentsCore
 {
@@ -29,7 +29,7 @@ class ModComments extends ModCommentsCore
 			// Mark the module as Standard module
 			$adb->pquery('UPDATE vtiger_tab SET customized=0 WHERE name=?', array($modulename));
 		} elseif ($event_type == 'module.postupdate') {
-			
+
 		}
 	}
 

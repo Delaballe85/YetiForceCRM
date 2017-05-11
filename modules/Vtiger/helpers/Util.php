@@ -299,8 +299,8 @@ class Vtiger_Util_Helper
 	 */
 	public static function convertDateTimeIntoUsersDisplayFormat($dateTime, $userObject = null)
 	{
-		require_once 'include/runtime/LanguageHandler.php';
-		require_once 'include/runtime/Globals.php';
+		require_once ROOT_DIRECTORY . 'include/runtime/LanguageHandler.php';
+		require_once ROOT_DIRECTORY . 'include/runtime/Globals.php';
 		if ($userObject) {
 			$userModel = Users_Privileges_Model::getInstanceFromUserObject($userObject);
 		} else {
@@ -323,8 +323,8 @@ class Vtiger_Util_Helper
 	 */
 	public static function convertTimeIntoUsersDisplayFormat($time, $userObject = null)
 	{
-		require_once 'include/runtime/LanguageHandler.php';
-		require_once 'include/runtime/Globals.php';
+		require_once ROOT_DIRECTORY . 'include/runtime/LanguageHandler.php';
+		require_once ROOT_DIRECTORY . 'include/runtime/Globals.php';
 		if ($userObject) {
 			$userModel = Users_Privileges_Model::getInstanceFromUserObject($userObject);
 		} else {

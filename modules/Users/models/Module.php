@@ -263,7 +263,7 @@ class Users_Module_Model extends Vtiger_Module_Model
 	 */
 	public static function getSwitchUsers($showRole = false)
 	{
-		require('user_privileges/switchUsers.php');
+		require(ROOT_DIRECTORY . 'user_privileges/switchUsers.php');
 		$baseUserId = \App\User::getCurrentUserRealId();
 		$users = $userIds = [];
 		if (isset($switchUsers[$baseUserId])) {

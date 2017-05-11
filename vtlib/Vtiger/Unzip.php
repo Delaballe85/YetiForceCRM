@@ -9,7 +9,7 @@
  * ********************************************************************************** */
 namespace vtlib;
 
-require_once('vtlib/thirdparty/dUnzip2.inc.php');
+require_once ROOT_DIRECTORY . 'vtlib/thirdparty/dUnzip2.inc.php';
 
 /**
  * Provides API to make working with zip file extractions easy

@@ -9,12 +9,12 @@
  * Contributor(s): YetiForce.com
  * *********************************************************************************** */
 chdir(dirname(__FILE__) . "/../../../");
-require_once 'include/RequirementsValidation.php';
-require_once 'include/main/WebUI.php';
-include_once "include/utils/VtlibUtils.php";
-include_once "include/Webservices/Custom/ChangePassword.php";
-include_once "include/Webservices/Utils.php";
-include_once 'modules/Vtiger/helpers/ShortURL.php';
+require_once ROOT_DIRECTORY . 'include/RequirementsValidation.php';
+require_once ROOT_DIRECTORY . 'include/main/WebUI.php';
+include_once ROOT_DIRECTORY . 'include/utils/VtlibUtils.php';
+include_once ROOT_DIRECTORY . 'include/Webservices/Custom/ChangePassword.php';
+include_once ROOT_DIRECTORY . 'include/Webservices/Utils.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/helpers/ShortURL.php';
 
 class Users_ForgotPassword_Action
 {

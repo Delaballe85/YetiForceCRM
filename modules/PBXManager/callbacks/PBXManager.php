@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 chdir(dirname(__FILE__) . '/../../../');
-include_once 'include/main/WebUI.php';
+include_once ROOT_DIRECTORY . 'include/main/WebUI.php';
 vimport('include.http.Request');
 
 class PBXManager_PBXManager_Callbacks

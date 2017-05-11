@@ -8,8 +8,8 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * *********************************************************************************** */
-include_once 'include/Webservices/Create.php';
-include_once 'include/utils/utils.php';
+include_once ROOT_DIRECTORY . 'include/Webservices/Create.php';
+include_once ROOT_DIRECTORY . 'include/utils/utils.php';
 
 class PBXManager_IncomingCallPoll_Action extends Vtiger_Action_Controller
 {

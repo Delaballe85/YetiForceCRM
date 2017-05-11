@@ -5,7 +5,7 @@
  * @license licenses/License.html
  * @author Mariusz Krzaczkowski <m.krzaczkowski@yetiforce.com>
  */
-include_once 'modules/Vtiger/CRMEntity.php';
+include_once ROOT_DIRECTORY . 'modules/Vtiger/CRMEntity.php';
 
 class Announcements extends Vtiger_CRMEntity
 {
@@ -85,7 +85,6 @@ class Announcements extends Vtiger_CRMEntity
 		if ($eventType == 'module.postinstall') {
 			\App\Fields\RecordNumber::setNumber($moduleName, 'NO', '1');
 			$adb->pquery('UPDATE vtiger_tab SET customized=0 WHERE name=?', array('Announcements'));
-
 		} else if ($eventType == 'module.disabled') {
 
 		} else if ($eventType == 'module.preuninstall') {

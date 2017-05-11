@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Install test class
  * @package YetiForce.Tests
@@ -15,13 +16,13 @@ class Install extends TestCase
 
 	public function testInstall()
 	{
-		require_once('install/models/InitSchema.php');
+		require_once(ROOT_DIRECTORY . 'install/models/InitSchema.php');
 
 		$db = PearDatabase::getInstance();
 		$initSchema = new Install_InitSchema_Model($db);
 		$initSchema->initialize();
 	}
-	
+
 	public function testDownloadLibrary()
 	{
 		Settings_ModuleManager_Library_Model::downloadAll();

@@ -29,7 +29,7 @@ class Version
 	private static function init()
 	{
 		if (static::$versions === false) {
-			static::$versions = require 'config/version.php';
+			static::$versions = require ROOT_DIRECTORY . 'config/version.php';
 		}
 	}
 

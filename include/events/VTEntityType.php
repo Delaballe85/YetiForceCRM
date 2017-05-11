@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once('include/events/SqlResultIterator.php');
+require_once ROOT_DIRECTORY . 'include/events/SqlResultIterator.php';
 
 class VTEntityType
 {
@@ -16,7 +16,7 @@ class VTEntityType
 	function __construct($adb, $setype)
 	{
 		$this->moduleName = $setype;
-		require_once("modules/" . $setype . "/" . $setype . ".php");
+		require_once(ROOT_DIRECTORY . "modules/" . $setype . "/" . $setype . ".php");
 		$result = $adb->pquery("select tabid from vtiger_tab where name=?", array($setype));
 		$tabId = $adb->query_result($result, 0, "tabid");
 		$this->tabId = $tabId;

@@ -145,8 +145,8 @@ class Assets extends CRMEntity
 	public function getListViewSecurityParameter($module)
 	{
 		$current_user = vglobal('current_user');
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		$sec_query = '';
 		$tabid = \App\Module::getModuleId($module);
@@ -191,7 +191,7 @@ class Assets extends CRMEntity
 	{
 		$current_user = vglobal('current_user');
 
-		include("include/utils/ExportUtils.php");
+		include(ROOT_DIRECTORY . "include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
 		$sql = getPermittedFieldsQuery('Assets', "detail_view");
@@ -216,8 +216,8 @@ class Assets extends CRMEntity
 		else
 			$query .= sprintf(' where %s', $where_auto);
 
-		require('user_privileges/user_privileges_' . $current_user->id . '.php');
-		require('user_privileges/sharing_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/user_privileges_' . $current_user->id . '.php');
+		require(ROOT_DIRECTORY . 'user_privileges/sharing_privileges_' . $current_user->id . '.php');
 
 		// Security Check for Field Access
 		if ($is_admin === false && $profileGlobalPermission[1] == 1 && $profileGlobalPermission[2] == 1 && $defaultOrgSharingPermission[\App\Module::getModuleId('Assets')] == 3) {
@@ -292,7 +292,7 @@ class Assets extends CRMEntity
 	 */
 	public function vtlib_handler($moduleName, $eventType)
 	{
-		require_once('include/utils/utils.php');
+		require_once(ROOT_DIRECTORY . 'include/utils/utils.php');
 		$adb = PearDatabase::getInstance();
 
 		if ($eventType == 'module.postinstall') {
@@ -318,13 +318,13 @@ class Assets extends CRMEntity
 
 			\App\Fields\RecordNumber::setNumber($moduleName, 'ASSET', 1);
 		} else if ($eventType == 'module.disabled') {
-			
+
 		} else if ($eventType == 'module.enabled') {
-			
+
 		} else if ($eventType == 'module.preuninstall') {
-			
+
 		} else if ($eventType == 'module.preupdate') {
-			
+
 		} else if ($eventType == 'module.postupdate') {
 			\App\Fields\RecordNumber::setNumber($moduleName, 'ASSET', 1);
 		}

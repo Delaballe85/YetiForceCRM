@@ -8,8 +8,8 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once("include/Webservices/VTQL_Lexer.php");
-require_once("include/Webservices/VTQL_Parser.php");
+require_once ROOT_DIRECTORY . 'include/Webservices/VTQL_Lexer.php';
+require_once ROOT_DIRECTORY . 'include/Webservices/VTQL_Parser.php';
 
 class Parser
 {

@@ -8,9 +8,9 @@
  * All Rights Reserved.
  * Contributor(s): YetiForce.com
  * ********************************************************************************** */
-require_once('VTJsonCondition.php');
-require_once 'include/utils/ConfigReader.php';
-require_once 'include/runtime/Cache.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTJsonCondition.php';
+require_once ROOT_DIRECTORY . 'include/utils/ConfigReader.php';
+require_once ROOT_DIRECTORY . 'include/runtime/Cache.php';
 
 class VTWorkflowManager
 {
@@ -161,7 +161,7 @@ class VTWorkflowManager
 		$workflowClassPath = $workflowTypeConfig['classpath'];
 		$workflowClass = $workflowTypeConfig['class'];
 
-		require_once $workflowClassPath;
+		require_once ROOT_DIRECTORY . $workflowClassPath;
 		$workflow = new $workflowClass();
 		return $workflow;
 	}
@@ -382,8 +382,8 @@ class Workflow
 	 */
 	public function performTasks($recordModel)
 	{
-		require_once('modules/com_vtiger_workflow/VTTaskManager.php');
-		require_once('modules/com_vtiger_workflow/VTTaskQueue.php');
+		require_once(ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTTaskManager.php');
+		require_once(ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTTaskQueue.php');
 
 		$tm = new VTTaskManager();
 		$taskQueue = new VTTaskQueue();

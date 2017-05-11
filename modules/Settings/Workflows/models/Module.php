@@ -8,8 +8,8 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once 'modules/com_vtiger_workflow/include.php';
-require_once 'modules/com_vtiger_workflow/expression_engine/VTExpressionsManager.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/include.php';
+require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/expression_engine/VTExpressionsManager.php';
 
 class Settings_Workflows_Module_Model extends Settings_Vtiger_Module_Model
 {
@@ -128,7 +128,7 @@ class Settings_Workflows_Module_Model extends Settings_Vtiger_Module_Model
 	static function deleteForModule($moduleInstance)
 	{
 		$db = PearDatabase::getInstance();
-		$db->pquery('DELETE com_vtiger_workflows,com_vtiger_workflowtasks FROM `com_vtiger_workflows` 
+		$db->pquery('DELETE com_vtiger_workflows,com_vtiger_workflowtasks FROM `com_vtiger_workflows`
 			LEFT JOIN `com_vtiger_workflowtasks` ON com_vtiger_workflowtasks.workflow_id = com_vtiger_workflows.workflow_id
 			WHERE `module_name` =?', [$moduleInstance->name]);
 	}
@@ -153,7 +153,7 @@ class Settings_Workflows_Module_Model extends Settings_Vtiger_Module_Model
 			foreach ($data['workflow_tasks'] as $task) {
 				$db->createCommand()->insert('com_vtiger_workflowtasks', ['workflow_id' => $workflowId, 'summary' => $task['summary']])->execute();
 				$taskId = $db->getLastInsertID('com_vtiger_workflowtasks_task_id_seq');
-				include_once 'modules/com_vtiger_workflow/tasks/VTEntityMethodTask.php';
+				include_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/tasks/VTEntityMethodTask.php';
 				$taskObject = unserialize($task['task']);
 				$taskObject->workflowId = intval($workflowId);
 				$taskObject->id = intval($taskId);
@@ -210,7 +210,7 @@ class Settings_Workflows_Module_Model extends Settings_Vtiger_Module_Model
 		$num = $db->getSingleValue($result);
 
 		if ($num == 0) {
-			require_once 'modules/com_vtiger_workflow/VTEntityMethodManager.php';
+			require_once ROOT_DIRECTORY . 'modules/com_vtiger_workflow/VTEntityMethodManager.php';
 			$emm = new VTEntityMethodManager();
 			$emm->addEntityMethod($method['module_name'], $method['method_name'], $method['function_path'], $method['function_name']);
 		}

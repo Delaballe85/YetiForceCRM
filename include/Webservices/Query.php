@@ -8,7 +8,7 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-require_once("include/Webservices/QueryParser.php");
+require_once ROOT_DIRECTORY . 'include/Webservices/QueryParser.php';
 
 function vtws_query($q, $user)
 {
@@ -16,9 +16,9 @@ function vtws_query($q, $user)
 	static $vtws_query_cache = [];
 
 	$adb = PearDatabase::getInstance();
-	
 
-	// Cache the instance for re-use		
+
+	// Cache the instance for re-use
 	$moduleRegex = "/[fF][rR][Oo][Mm]\s+([^\s;]+)/";
 	$moduleName = '';
 	if (preg_match($moduleRegex, $q, $m))
@@ -44,7 +44,7 @@ function vtws_query($q, $user)
 	} else {
 		$handler = $vtws_query_cache[$moduleName]['handler'];
 	}
-	// END	
+	// END
 	// Cache the instance for re-use
 	if (!isset($vtws_query_cache[$moduleName]['meta'])) {
 		$meta = $handler->getMeta();

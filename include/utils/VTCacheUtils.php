@@ -11,7 +11,7 @@
 /**
  * Class to handle Caching Mechanism and re-use information.
  */
-require_once 'include/runtime/Cache.php';
+require_once ROOT_DIRECTORY . 'include/runtime/Cache.php';
 
 class VTCacheUtils
 {
